@@ -26,15 +26,15 @@ namespace CalculatorApp
 
             for (int j = 0; j < numbers.Length; j++)
             {
-                if (temp[temp.Length - 1].Equals(numbers[j]))
+                if (temp[temp.Length - 1].Equals(numbers[j]) || temp[temp.Length - 1].Equals('(') || temp[temp.Length - 1].Equals(')'))
                 {
-                    return 1;//숫자일시 1 return
+                    return 1;//숫자일시 1 return , 괄호여도 return 1
                 }
             }
             return 0;
         }
         // 수식 계산 로직
-        public void CalculateResult() {
+        /*public void CalculateResult() {
             string temp = resultScreen.Text;
             Stack<Double> numberStack = new Stack<Double>();
             String numbersSaveTemp = "";
@@ -68,22 +68,22 @@ namespace CalculatorApp
             double result = numberStack.Pop();
             for (int i = 0; i < expSave.Count; i++)
             {
-                if (expSave[i].Equals('＋')) 
+                if (expSave[i].Equals('+')) 
                 {
                     result += numberStack.Pop();
                     Console.WriteLine(result);
                 }
-                else if (expSave[i].Equals('－'))
+                else if (expSave[i].Equals('-'))
                 {
                     result -= numberStack.Pop(); Console.WriteLine(result);
 
                 }
-                else if (expSave[i].Equals('×'))
+                else if (expSave[i].Equals('*'))
                 {
                     result *= numberStack.Pop(); Console.WriteLine(result);
 
                 }
-                else if (expSave[i].Equals('÷'))
+                else if (expSave[i].Equals('/'))
                 {
                     result /= numberStack.Pop(); Console.WriteLine(result);
 
@@ -91,6 +91,138 @@ namespace CalculatorApp
             }
             Console.WriteLine("결과 : "+result);
 
+        }*/
+
+        public List<String> CalStackUse() {
+            string temp = resultScreen.Text;
+            //string temp = "1+2*3+(4+2)/2";
+            Console.WriteLine(temp);
+            Console.WriteLine(temp.Length);
+            String numbersSaveTemp = "";
+            List<String> mathList = new List<String>();//전체 식 저장
+            Stack<string> expsStack = new Stack<string>();//기호 임시 저장
+
+            for (int i = 0; i < temp.Length; i++)
+            {
+                bool numCheck = false;
+                for (int j = 0; j < numbers.Length; j++) //숫자체크
+                {
+                    if (temp[i].Equals(numbers[j]) || temp[i].Equals('.'))
+                    {
+                        numbersSaveTemp += temp[i];
+                        numCheck = true;
+                        break;
+                    }
+                }
+
+                if (!numCheck)// 기호가 나왔을 시
+                {
+                    if (numbersSaveTemp.Length !=0) {
+                        mathList.Add(numbersSaveTemp);
+                        numbersSaveTemp = "";
+                    }
+                    
+
+                    if (temp[i].Equals('('))
+                    {
+                        expsStack.Push(temp[i].ToString());
+                    }
+                    else if (temp[i].Equals('*') || temp[i].Equals('/'))
+                    {
+                        expsStack.Push(temp[i].ToString());
+                    }
+                    else if (temp[i].Equals('+') || temp[i].Equals('-'))
+                    {
+                        if (expsStack.Count == 0) {
+                        }
+                        else
+                        {
+                            while (expsStack.Count > 0 )
+                            {
+                                if (expsStack.Peek().Equals("("))
+                                {
+                                    break;
+                                }
+                                mathList.Add(expsStack.Pop().ToString());
+                            }
+                        }
+                        expsStack.Push(temp[i].ToString());
+
+                    }
+                    else if (temp[i].Equals(')')) 
+                    {
+                        if (expsStack.Count == 0)
+                        {
+                        }
+                        else
+                        {
+                            while (expsStack.Count > 0 )
+                            {
+                                if (expsStack.Peek().Equals("("))
+                                {
+                                    expsStack.Pop();
+                                    break;
+                                }
+                                mathList.Add(expsStack.Pop().ToString());
+                            }
+                        }
+                    }
+                    
+                }
+            }
+            if (numbersSaveTemp != "") 
+            {            
+                mathList.Add(numbersSaveTemp);//맨 마지막 숫자 저장
+            }
+
+            while (expsStack.Count > 0) // 남아있는 연산자 저장
+            {
+                mathList.Add(expsStack.Pop().ToString());
+            }
+
+            Console.WriteLine(mathList.Count);
+            recentScreen.Text = "";
+            for (int i =0;i<mathList.Count;i++) {
+                Console.WriteLine(mathList[i].ToString());
+            }
+
+            return mathList; // 저장된 후위수식 return
+        }
+
+        public double CalPostModification(List<String> PostMod) {
+            Stack<double> numberStack = new Stack<double>();
+            string expTemp = "";
+            double result = 0;
+            for (int i = 0; i < PostMod.Count; i++) {
+
+                expTemp = PostMod[i];
+                if (expTemp.Equals("+"))
+                {
+                    result = numberStack.Pop() + numberStack.Pop();
+                    numberStack.Push(result);
+                }
+                else if (expTemp.Equals("-"))
+                {
+                    result = 0 - numberStack.Pop() + numberStack.Pop();
+                    numberStack.Push(result);
+                }
+                else if (expTemp.Equals("*"))
+                {
+                    result = numberStack.Pop() * numberStack.Pop();
+                    numberStack.Push(result);
+                }
+                else if (expTemp.Equals("/"))
+                {
+                    result =1 / numberStack.Pop() * numberStack.Pop();
+                    numberStack.Push(result);
+                }
+                else 
+                {
+                    numberStack.Push(Double.Parse(PostMod[i]));
+                }
+            }
+            result = numberStack.Pop();
+            return result;
         }
 
         // bracket 알맞게 입력하기
@@ -110,7 +242,10 @@ namespace CalculatorApp
                 }
             }
 
-            if (temp[temp.Length - 1].Equals(')') && bracketNumCheck == 0)
+            if (temp.Length ==0) {
+                resultScreen.Text += "(";
+            }
+            else if (temp[temp.Length - 1].Equals(')') && bracketNumCheck == 0)
             {
                 resultScreen.Text += "*(";
             }
@@ -125,11 +260,11 @@ namespace CalculatorApp
         }
 
         //숫자 및 dot 버튼 클릭시 Event
-        public void numBtnClickEvent(object sender, EventArgs e) {
+        public void NumBtnClickEvent(object sender, EventArgs e) {
             string inputText = (sender as Button).Text;
             if (inputText == dotBtn.Text)
             {
-                char[] splitStr = { '＋', '－', '×', '÷' };
+                char[] splitStr = { '+', '-', '*', '/' };
                 string[] tempString = resultScreen.Text.Split(splitStr);
                 Console.WriteLine(tempString[tempString.Length - 1]);
                 if (tempString[tempString.Length - 1].Contains(dotBtn.Text))
@@ -164,7 +299,9 @@ namespace CalculatorApp
             {
                 // 여태 저장된 수식을 계산하고 resultScreen에 결과 출력
                 //resultScreen.Text += inputText;
-                CalculateResult();
+                List<String> postModification = new List<string>();
+                postModification = CalStackUse();
+                resultScreen.Text = CalPostModification(postModification).ToString();
             }
             else if (inputText == delBtn.Text)
             {
@@ -205,10 +342,7 @@ namespace CalculatorApp
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
+    
 
         private void plusBtn_Click(object sender, EventArgs e)
         {
