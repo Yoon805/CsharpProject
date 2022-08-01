@@ -142,7 +142,7 @@
             this.clearBtn.Text = "C";
             this.clearBtn.UseSelectable = true;
             this.clearBtn.UseStyleColors = true;
-            this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
+            this.clearBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
             // 
             // bracketBtn
             // 
@@ -161,7 +161,7 @@
             this.bracketBtn.Text = "( )";
             this.bracketBtn.UseSelectable = true;
             this.bracketBtn.UseStyleColors = true;
-            this.bracketBtn.Click += new System.EventHandler(this.bracketBtn_Click);
+            this.bracketBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
             // 
             // percentBtn
             // 
@@ -180,7 +180,7 @@
             this.percentBtn.Text = "%";
             this.percentBtn.UseSelectable = true;
             this.percentBtn.UseStyleColors = true;
-            this.percentBtn.Click += new System.EventHandler(this.percentBtn_Click);
+            this.percentBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
             // 
             // divBtn
             // 
@@ -199,7 +199,7 @@
             this.divBtn.Text = "/";
             this.divBtn.UseSelectable = true;
             this.divBtn.UseStyleColors = true;
-            this.divBtn.Click += new System.EventHandler(this.divBtn_Click);
+            this.divBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
             // 
             // mulBtn
             // 
@@ -218,7 +218,7 @@
             this.mulBtn.Text = "*";
             this.mulBtn.UseSelectable = true;
             this.mulBtn.UseStyleColors = true;
-            this.mulBtn.Click += new System.EventHandler(this.mulBtn_Click);
+            this.mulBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
             // 
             // minusBtn
             // 
@@ -237,7 +237,7 @@
             this.minusBtn.Text = "-";
             this.minusBtn.UseSelectable = true;
             this.minusBtn.UseStyleColors = true;
-            this.minusBtn.Click += new System.EventHandler(this.minusBtn_Click);
+            this.minusBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
             // 
             // plusBtn
             // 
@@ -256,7 +256,7 @@
             this.plusBtn.Text = "+";
             this.plusBtn.UseSelectable = true;
             this.plusBtn.UseStyleColors = true;
-            this.plusBtn.Click += new System.EventHandler(this.plusBtn_Click);
+            this.plusBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
             // 
             // equalBtn
             // 
@@ -276,7 +276,7 @@
             this.equalBtn.UseCustomBackColor = true;
             this.equalBtn.UseSelectable = true;
             this.equalBtn.UseStyleColors = true;
-            this.equalBtn.Click += new System.EventHandler(this.equalBtn_Click);
+            this.equalBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
             // 
             // numBtn3
             // 
@@ -550,7 +550,7 @@
             this.delBtn.UseCustomBackColor = true;
             this.delBtn.UseSelectable = true;
             this.delBtn.UseStyleColors = true;
-            this.delBtn.Click += new System.EventHandler(this.delBtn_Click);
+            this.delBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
             // 
             // resultScreen
             // 

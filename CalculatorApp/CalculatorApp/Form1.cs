@@ -1,13 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 
 namespace CalculatorApp
 {
@@ -17,6 +10,8 @@ namespace CalculatorApp
         public Form1()
         {
             InitializeComponent();
+            resultScreen.Text = "";
+            recentScreen.Text = "";
         }
         char[] numbers = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
@@ -281,9 +276,10 @@ namespace CalculatorApp
 
         }
         //수식 버튼 클릭시 Event
-        public void expBtnClickEvent(string inputText) {
+        private void ExpBtnClickEvent(object sender, EventArgs e) {
             // 수식 버튼들 입력시 resultScreen에 현재식 내용 보여주고
             // 현재까지 결과 recentScreen에 보여주기
+            string inputText = (sender as Button).Text;
             if (inputText == bracketBtn.Text)
             {
                 // 수식 확인해서 괄호 추가
@@ -342,51 +338,5 @@ namespace CalculatorApp
             }
         }
 
-    
-
-        private void plusBtn_Click(object sender, EventArgs e)
-        {
-            expBtnClickEvent(plusBtn.Text);
-        }
-
-        private void minusBtn_Click(object sender, EventArgs e)
-        {
-            expBtnClickEvent(minusBtn.Text);
-        }
-
-        private void mulBtn_Click(object sender, EventArgs e)
-        {
-            expBtnClickEvent(mulBtn.Text);
-        }
-
-        private void divBtn_Click(object sender, EventArgs e)
-        {
-            expBtnClickEvent(divBtn.Text);
-        }
-
-        private void percentBtn_Click(object sender, EventArgs e)
-        {
-            expBtnClickEvent(percentBtn.Text);
-        }
-
-        private void bracketBtn_Click(object sender, EventArgs e)
-        {
-            expBtnClickEvent(bracketBtn.Text);
-        }
-
-        private void clearBtn_Click(object sender, EventArgs e)
-        {
-            expBtnClickEvent(clearBtn.Text);
-        }
-
-        private void equalBtn_Click(object sender, EventArgs e)
-        {
-            expBtnClickEvent(equalBtn.Text);
-        }
-
-        private void delBtn_Click(object sender, EventArgs e)
-        {
-            expBtnClickEvent(delBtn.Text);
-        }
     }
 }
