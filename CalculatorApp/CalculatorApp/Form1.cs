@@ -88,7 +88,7 @@ namespace CalculatorApp
 
         }*/
 
-        public List<String> CalStackUse() {
+       /* public List<String> CalStackUse() {
             string temp = resultScreen.Text;
             //string temp = "1+2*3+(4+2)/2";
             Console.WriteLine(temp);
@@ -182,9 +182,9 @@ namespace CalculatorApp
             }
 
             return mathList; // 저장된 후위수식 return
-        }
+        }*/
 
-        public double CalPostModification(List<String> PostMod) {
+        /*public double CalPostModification(List<String> PostMod) {
             Stack<double> numberStack = new Stack<double>();
             string expTemp = "";
             double result = 0;
@@ -218,7 +218,7 @@ namespace CalculatorApp
             }
             result = numberStack.Pop();
             return result;
-        }
+        }*/
 
         // bracket 알맞게 입력하기
         public void BracketInsert()
@@ -296,8 +296,9 @@ namespace CalculatorApp
                 // 여태 저장된 수식을 계산하고 resultScreen에 결과 출력
                 //resultScreen.Text += inputText;
                 List<String> postModification = new List<string>();
-                postModification = CalStackUse();
-                resultScreen.Text = CalPostModification(postModification).ToString();
+                UserFunction userFunc = new UserFunction();
+                postModification = userFunc.CalStackUse(resultScreen.Text);
+                resultScreen.Text = userFunc.CalPostModification(postModification).ToString();
             }
             else if (inputText == delBtn.Text)
             {
