@@ -125,8 +125,8 @@ namespace CalculatorApp
         }
 
         //숫자 및 dot 버튼 클릭시 Event
-        public void numBtnClickEvent(string inputText) {
-
+        public void numBtnClickEvent(object sender, EventArgs e) {
+            string inputText = (sender as Button).Text;
             if (inputText == dotBtn.Text)
             {
                 char[] splitStr = { '＋', '－', '×', '÷' };
@@ -208,66 +208,6 @@ namespace CalculatorApp
         private void Form1_Load(object sender, EventArgs e)
         {
 
-        }
-
-        private void numBtn0_Click(object sender, EventArgs e)
-        {
-            numBtnClickEvent(numBtn0.Text);
-        }
-
-        private void numBtn00_Click(object sender, EventArgs e)
-        {
-            numBtnClickEvent(numBtn00.Text);
-        }
-
-        private void numBtn1_Click(object sender, EventArgs e)
-        {
-            numBtnClickEvent(numBtn1.Text);
-        }
-
-        private void numBtn2_Click(object sender, EventArgs e)
-        {
-            numBtnClickEvent(numBtn2.Text);
-        }
-
-        private void numBtn3_Click(object sender, EventArgs e)
-        {
-            numBtnClickEvent(numBtn3.Text);
-        }
-
-        private void numBtn4_Click(object sender, EventArgs e)
-        {
-            numBtnClickEvent(numBtn4.Text);
-        }
-
-        private void numBtn5_Click(object sender, EventArgs e)
-        {
-            numBtnClickEvent(numBtn5.Text);
-        }
-
-        private void numBtn6_Click(object sender, EventArgs e)
-        {
-            numBtnClickEvent(numBtn6.Text);
-        }
-
-        private void numBtn7_Click(object sender, EventArgs e)
-        {
-            numBtnClickEvent(numBtn7.Text);
-        }
-
-        private void numBtn8_Click(object sender, EventArgs e)
-        {
-            numBtnClickEvent(numBtn8.Text);
-        }
-
-        private void numBtn9_Click(object sender, EventArgs e)
-        {
-            numBtnClickEvent(numBtn9.Text);
-        }
-
-        private void dotBtn_Click(object sender, EventArgs e)
-        {
-            numBtnClickEvent(dotBtn.Text);
         }
 
         private void plusBtn_Click(object sender, EventArgs e)

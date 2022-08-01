@@ -296,7 +296,7 @@
             this.numBtn3.Text = "3";
             this.numBtn3.UseSelectable = true;
             this.numBtn3.UseStyleColors = true;
-            this.numBtn3.Click += new System.EventHandler(this.numBtn3_Click);
+            this.numBtn3.Click += new System.EventHandler(this.numBtnClickEvent);
             // 
             // numBtn6
             // 
@@ -316,7 +316,7 @@
             this.numBtn6.Text = "6";
             this.numBtn6.UseSelectable = true;
             this.numBtn6.UseStyleColors = true;
-            this.numBtn6.Click += new System.EventHandler(this.numBtn6_Click);
+            this.numBtn6.Click += new System.EventHandler(this.numBtnClickEvent);
             // 
             // numBtn9
             // 
@@ -336,7 +336,7 @@
             this.numBtn9.Text = "9";
             this.numBtn9.UseSelectable = true;
             this.numBtn9.UseStyleColors = true;
-            this.numBtn9.Click += new System.EventHandler(this.numBtn9_Click);
+            this.numBtn9.Click += new System.EventHandler(this.numBtnClickEvent);
             // 
             // numBtn8
             // 
@@ -356,7 +356,7 @@
             this.numBtn8.Text = "8";
             this.numBtn8.UseSelectable = true;
             this.numBtn8.UseStyleColors = true;
-            this.numBtn8.Click += new System.EventHandler(this.numBtn8_Click);
+            this.numBtn8.Click += new System.EventHandler(this.numBtnClickEvent);
             // 
             // numBtn5
             // 
@@ -376,7 +376,7 @@
             this.numBtn5.Text = "5";
             this.numBtn5.UseSelectable = true;
             this.numBtn5.UseStyleColors = true;
-            this.numBtn5.Click += new System.EventHandler(this.numBtn5_Click);
+            this.numBtn5.Click += new System.EventHandler(this.numBtnClickEvent);
             // 
             // numBtn2
             // 
@@ -396,7 +396,7 @@
             this.numBtn2.Text = "2";
             this.numBtn2.UseSelectable = true;
             this.numBtn2.UseStyleColors = true;
-            this.numBtn2.Click += new System.EventHandler(this.numBtn2_Click);
+            this.numBtn2.Click += new System.EventHandler(this.numBtnClickEvent);
             // 
             // numBtn0
             // 
@@ -416,7 +416,7 @@
             this.numBtn0.Text = "0";
             this.numBtn0.UseSelectable = true;
             this.numBtn0.UseStyleColors = true;
-            this.numBtn0.Click += new System.EventHandler(this.numBtn0_Click);
+            this.numBtn0.Click += new System.EventHandler(this.numBtnClickEvent);
             // 
             // numBtn1
             // 
@@ -436,7 +436,7 @@
             this.numBtn1.Text = "1";
             this.numBtn1.UseSelectable = true;
             this.numBtn1.UseStyleColors = true;
-            this.numBtn1.Click += new System.EventHandler(this.numBtn1_Click);
+            this.numBtn1.Click += new System.EventHandler(this.numBtnClickEvent);
             // 
             // numBtn4
             // 
@@ -456,7 +456,7 @@
             this.numBtn4.Text = "4";
             this.numBtn4.UseSelectable = true;
             this.numBtn4.UseStyleColors = true;
-            this.numBtn4.Click += new System.EventHandler(this.numBtn4_Click);
+            this.numBtn4.Click += new System.EventHandler(this.numBtnClickEvent);
             // 
             // numBtn7
             // 
@@ -476,7 +476,7 @@
             this.numBtn7.Text = "7";
             this.numBtn7.UseSelectable = true;
             this.numBtn7.UseStyleColors = true;
-            this.numBtn7.Click += new System.EventHandler(this.numBtn7_Click);
+            this.numBtn7.Click += new System.EventHandler(this.numBtnClickEvent);
             // 
             // numBtn00
             // 
@@ -496,7 +496,7 @@
             this.numBtn00.Text = "00";
             this.numBtn00.UseSelectable = true;
             this.numBtn00.UseStyleColors = true;
-            this.numBtn00.Click += new System.EventHandler(this.numBtn00_Click);
+            this.numBtn00.Click += new System.EventHandler(this.numBtnClickEvent);
             // 
             // dotBtn
             // 
@@ -516,7 +516,7 @@
             this.dotBtn.Text = ".";
             this.dotBtn.UseSelectable = true;
             this.dotBtn.UseStyleColors = true;
-            this.dotBtn.Click += new System.EventHandler(this.dotBtn_Click);
+            this.dotBtn.Click += new System.EventHandler(this.numBtnClickEvent);
             // 
             // tableLayoutPanel3
             // 
