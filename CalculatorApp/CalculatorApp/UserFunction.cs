@@ -1,21 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CalculatorApp
 {
     internal class UserFunction
     {
-        char[] numbers = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
 
         public List<String> CalStackUse(string temp)
         {
             //string temp = "1+2*3+(4+2)/2";
-            Console.WriteLine(temp);
-            Console.WriteLine(temp.Length);
+            char[] numbers = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
             String numbersSaveTemp = "";
             List<String> mathList = new List<String>();//전체 식 저장
             Stack<string> expsStack = new Stack<string>();//기호 임시 저장
@@ -147,4 +142,8 @@ namespace CalculatorApp
             return result;
         }
     }
+
+
+
+
 }
