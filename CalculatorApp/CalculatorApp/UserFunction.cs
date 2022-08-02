@@ -47,17 +47,10 @@ namespace CalculatorApp
                     }
                     else if (temp[i].Equals('+') || temp[i].Equals('-'))
                     {
-                        if (expsStack.Count == 0)
+                        if (expsStack.Count != 0)
                         {
-                        }
-                        else
-                        {
-                            while (expsStack.Count > 0)
+                            while (expsStack.Count > 0 || expsStack.Peek().Equals("("))
                             {
-                                if (expsStack.Peek().Equals("("))
-                                {
-                                    break;
-                                }
                                 mathList.Add(expsStack.Pop().ToString());
                             }
                         }
@@ -66,11 +59,8 @@ namespace CalculatorApp
                     }
                     else if (temp[i].Equals(')'))
                     {
-                        if (expsStack.Count == 0)
-                        {
-                        }
-                        else
-                        {
+                        if (expsStack.Count != 0)
+                        {                        
                             while (expsStack.Count > 0)
                             {
                                 if (expsStack.Peek().Equals("("))
@@ -107,28 +97,26 @@ namespace CalculatorApp
         public double CalPostModification(List<String> PostMod)
         {
             Stack<double> numberStack = new Stack<double>();
-            string expTemp = "";
-            double result = 0;
+            double result;
             for (int i = 0; i < PostMod.Count; i++)
             {
 
-                expTemp = PostMod[i];
-                if (expTemp.Equals("+"))
+                if (PostMod[i].Equals("+"))
                 {
                     result = numberStack.Pop() + numberStack.Pop();
                     numberStack.Push(result);
                 }
-                else if (expTemp.Equals("-"))
+                else if (PostMod[i].Equals("-"))
                 {
                     result = 0 - numberStack.Pop() + numberStack.Pop();
                     numberStack.Push(result);
                 }
-                else if (expTemp.Equals("*"))
+                else if (PostMod[i].Equals("*"))
                 {
                     result = numberStack.Pop() * numberStack.Pop();
                     numberStack.Push(result);
                 }
-                else if (expTemp.Equals("/"))
+                else if (PostMod[i].Equals("/"))
                 {
                     result = 1 / numberStack.Pop() * numberStack.Pop();
                     numberStack.Push(result);
@@ -138,8 +126,7 @@ namespace CalculatorApp
                     numberStack.Push(Double.Parse(PostMod[i]));
                 }
             }
-            result = numberStack.Pop();
-            return result;
+            return numberStack.Pop();
         }
     }
 
