@@ -55,16 +55,16 @@
             this.clearBtn = new MetroFramework.Controls.MetroButton();
             this.percentBtn = new MetroFramework.Controls.MetroButton();
             this.rootBtn = new MetroFramework.Controls.MetroButton();
-            this.squaredBtn = new MetroFramework.Controls.MetroButton();
             this.inverseBtn = new MetroFramework.Controls.MetroButton();
+            this.squaredBtn = new MetroFramework.Controls.MetroButton();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.recentScreen = new MetroFramework.Controls.MetroTile();
             this.resultScreen = new MetroFramework.Controls.MetroTile();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
-            this.logList = new MetroFramework.Controls.MetroListView();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.logList = new MetroFramework.Controls.MetroListView();
             this.listClearBtn = new MetroFramework.Controls.MetroButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -150,8 +150,8 @@
             this.tableLayoutPanel2.Controls.Add(this.clearBtn, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.percentBtn, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.rootBtn, 2, 1);
-            this.tableLayoutPanel2.Controls.Add(this.squaredBtn, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.inverseBtn, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.squaredBtn, 1, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 174);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -556,23 +556,6 @@
             this.rootBtn.UseStyleColors = true;
             this.rootBtn.Click += new System.EventHandler(this.RootBtn_Click);
             // 
-            // squaredBtn
-            // 
-            this.squaredBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(210)))), ((int)(((byte)(239)))));
-            this.squaredBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.squaredBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.squaredBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
-            this.squaredBtn.ForeColor = System.Drawing.Color.Black;
-            this.squaredBtn.Location = new System.Drawing.Point(59, 38);
-            this.squaredBtn.Name = "squaredBtn";
-            this.squaredBtn.Size = new System.Drawing.Size(50, 29);
-            this.squaredBtn.Style = MetroFramework.MetroColorStyle.Blue;
-            this.squaredBtn.TabIndex = 0;
-            this.squaredBtn.Text = "x^2";
-            this.squaredBtn.UseSelectable = true;
-            this.squaredBtn.UseStyleColors = true;
-            this.squaredBtn.Click += new System.EventHandler(this.SquaredBtn_Click);
-            // 
             // inverseBtn
             // 
             this.inverseBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(210)))), ((int)(((byte)(239)))));
@@ -589,6 +572,23 @@
             this.inverseBtn.UseSelectable = true;
             this.inverseBtn.UseStyleColors = true;
             this.inverseBtn.Click += new System.EventHandler(this.InverseBtn_Click);
+            // 
+            // squaredBtn
+            // 
+            this.squaredBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(179)))), ((int)(((byte)(210)))), ((int)(((byte)(239)))));
+            this.squaredBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.squaredBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.squaredBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
+            this.squaredBtn.ForeColor = System.Drawing.Color.Black;
+            this.squaredBtn.Location = new System.Drawing.Point(59, 38);
+            this.squaredBtn.Name = "squaredBtn";
+            this.squaredBtn.Size = new System.Drawing.Size(50, 29);
+            this.squaredBtn.Style = MetroFramework.MetroColorStyle.Blue;
+            this.squaredBtn.TabIndex = 0;
+            this.squaredBtn.Text = "^";
+            this.squaredBtn.UseSelectable = true;
+            this.squaredBtn.UseStyleColors = true;
+            this.squaredBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
             // 
             // tableLayoutPanel3
             // 
@@ -691,20 +691,6 @@
             this.metroTabPage1.VerticalScrollbarHighlightOnWheel = false;
             this.metroTabPage1.VerticalScrollbarSize = 0;
             // 
-            // logList
-            // 
-            this.logList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logList.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.logList.FullRowSelect = true;
-            this.logList.Location = new System.Drawing.Point(3, 23);
-            this.logList.Name = "logList";
-            this.logList.OwnerDraw = true;
-            this.logList.Size = new System.Drawing.Size(222, 317);
-            this.logList.TabIndex = 2;
-            this.logList.UseCompatibleStateImageBehavior = false;
-            this.logList.UseSelectable = true;
-            this.logList.View = System.Windows.Forms.View.List;
-            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.BackColor = System.Drawing.SystemColors.Window;
@@ -720,6 +706,20 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(228, 343);
             this.tableLayoutPanel4.TabIndex = 3;
+            // 
+            // logList
+            // 
+            this.logList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.logList.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.logList.FullRowSelect = true;
+            this.logList.Location = new System.Drawing.Point(3, 23);
+            this.logList.Name = "logList";
+            this.logList.OwnerDraw = true;
+            this.logList.Size = new System.Drawing.Size(222, 317);
+            this.logList.TabIndex = 2;
+            this.logList.UseCompatibleStateImageBehavior = false;
+            this.logList.UseSelectable = true;
+            this.logList.View = System.Windows.Forms.View.List;
             // 
             // listClearBtn
             // 
@@ -795,9 +795,9 @@
         private MetroFramework.Controls.MetroListView logList;
         private MetroFramework.Controls.MetroButton inverseBtn;
         private MetroFramework.Controls.MetroButton rootBtn;
-        private MetroFramework.Controls.MetroButton squaredBtn;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private MetroFramework.Controls.MetroButton listClearBtn;
+        private MetroFramework.Controls.MetroButton squaredBtn;
     }
 }
 

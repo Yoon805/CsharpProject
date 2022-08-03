@@ -26,12 +26,14 @@ namespace CalculatorApp
                     case '8':
                     case '9':
                     case '.':
+                    case '-': 
                         numbersSaveTemp += temp[i].ToString();
                         break;
                     // 기호가 나왔을 시 저장되어있던 숫자를 mathlist에 저장
                     case '(':
                     case '*':
                     case '/':
+                    case '^':
                         if (numbersSaveTemp.Length != 0)
                         {
                             mathList.Add(numbersSaveTemp);
@@ -40,7 +42,7 @@ namespace CalculatorApp
                         expsStack.Push(temp[i].ToString());
                         break;
                     case '+':
-                    case '-':
+                    case '－'://구분을 위해 특수문자로 사용
                         if (numbersSaveTemp.Length != 0)
                         {
                             mathList.Add(numbersSaveTemp);
@@ -69,6 +71,16 @@ namespace CalculatorApp
                             }
                             mathList.Add(expsStack.Pop().ToString());
                         }
+                        break;
+                    case '√':
+                        if (numbersSaveTemp.Length != 0)
+                        {
+                            mathList.Add(numbersSaveTemp);
+                            numbersSaveTemp = "";
+                        }
+                        //제곱 연산자는 단항 연산자로 다른 연산자와 다르게 앞에 들어가므로
+                        //따로 처리하여 연산 한뒤 반환해준다.
+
 
                         break;
                 }
@@ -98,7 +110,7 @@ namespace CalculatorApp
                         result = numberStack.Pop() + numberStack.Pop();
                         numberStack.Push(result);
                         break;
-                    case "-":
+                    case "－":
                         result = 0 - numberStack.Pop() + numberStack.Pop();
                         numberStack.Push(result);
                         break;
@@ -108,6 +120,11 @@ namespace CalculatorApp
                         break;
                     case "/":
                         result = 1 / numberStack.Pop() * numberStack.Pop();
+                        numberStack.Push(result);
+                        break;
+                    case "^":
+                        double num1 = numberStack.Pop();
+                        result = Math.Pow(numberStack.Pop(), num1);
                         numberStack.Push(result);
                         break;
                     default: //숫자일시 저장
