@@ -17,38 +17,7 @@ namespace CalculatorApp
             recentScreen.Text = "";
         }
 
-        // 뒤에서 n번째로 입력한 숫자 체크
-        public int NumberCheck(string screenText, int number)
-        {
-            switch (screenText[screenText.Length - number])
-            {
-                case '0':
-                case '1':
-                case '2':
-                case '3':
-                case '4':
-                case '5':
-                case '6':
-                case '7':
-                case '8':
-                case '9':
-                    return 0;
-                case '.':
-                    return 1;
-                case '-'://숫자로 받을 값들
-                    return 2;
-                case '(':
-                    return 3;
-                case ')':
-                    return 4;
-                case '－':
-                    return 5;
-                case '√':
-                    return 7;
-                default:// 연산자
-                    return 6;
-            }
-        }
+        UserFunction userFunc = new UserFunction();
 
         // bracket 알맞게 입력하기
         public string BracketInsert(string screenText, string nowOrNot)
@@ -80,11 +49,11 @@ namespace CalculatorApp
                 {
                     screenText += "(";
                 }
-                else if (!(NumberCheck(screenText, 1) == 3) && bracketNumCheck != 0)
+                else if (!(userFunc.NumberCheck(screenText, 1) == 3) && bracketNumCheck != 0)
                 {
                     screenText += ")";
                 }
-                else if ((NumberCheck(screenText, 1) == 4 && bracketNumCheck == 0) || NumberCheck(screenText, 1) == 0)
+                else if ((userFunc.NumberCheck(screenText, 1) == 4 && bracketNumCheck == 0) || userFunc.NumberCheck(screenText, 1) == 0)
                 {
                     screenText += "*(";
                 }
@@ -99,9 +68,7 @@ namespace CalculatorApp
         //로그 남기기
         public void WriteLog(string screen1)
         {
-            string[] strs1 = new string[] { screen1 };
-            ListViewItem lvi1 = new ListViewItem(strs1);
-            logList.Items.Add(lvi1);
+            logList.Items.Add(screen1);
         }
 
         //숫자 및 dot 버튼 클릭시 Event
@@ -123,7 +90,7 @@ namespace CalculatorApp
             }
             else
             {
-                if (resultScreen.Text.Length > 0 && NumberCheck(resultScreen.Text, 1) == 4) //닫힌 괄호 다음에 입력할 시
+                if (resultScreen.Text.Length > 0 && userFunc.NumberCheck(resultScreen.Text, 1) == 4) //닫힌 괄호 다음에 입력할 시
                 {
                     resultScreen.Text += "*" + inputText;
                 }
@@ -153,11 +120,11 @@ namespace CalculatorApp
                 {
                     resultScreen.Text += "1/";
                 }
-                else if (NumberCheck(resultScreen.Text, 1) == 1) //이전에 .을 입력했다면 입력제한
+                else if (userFunc.NumberCheck(resultScreen.Text, 1) == 1) //이전에 .을 입력했다면 입력제한
                 {
                     return;
                 }
-                else if (NumberCheck(resultScreen.Text, 1) == 0 || NumberCheck(resultScreen.Text, 1) == 4)
+                else if (userFunc.NumberCheck(resultScreen.Text, 1) == 0 || userFunc.NumberCheck(resultScreen.Text, 1) == 4)
                 {
                     resultScreen.Text += "*1/";
                 }
@@ -172,11 +139,11 @@ namespace CalculatorApp
                 {
                     resultScreen.Text += "√(";
                 }
-                else if (NumberCheck(resultScreen.Text, 1) == 1) //이전에 .을 입력했다면 입력제한
+                else if (userFunc.NumberCheck(resultScreen.Text, 1) == 1) //이전에 .을 입력했다면 입력제한
                 {
                     return;
                 }
-                else if (NumberCheck(resultScreen.Text, 1) == 0 || NumberCheck(resultScreen.Text, 1) == 4)
+                else if (userFunc.NumberCheck(resultScreen.Text, 1) == 0 || userFunc.NumberCheck(resultScreen.Text, 1) == 4)
                 {
                     resultScreen.Text += "*√(";
                 }
@@ -197,19 +164,23 @@ namespace CalculatorApp
             }
             else if (inputText == equalBtn.Text)
             {
-                // 저장된 수식을 계산하고 resultScreen에 결과 출력
-                UserFunction userFunc = new UserFunction();
-                string chCalc = BracketInsert(resultScreen.Text, "cal");
-                List<String> postModification = userFunc.CalStackUse(chCalc);
-                resultScreen.Text = userFunc.CalPostModification(postModification).ToString();
-                WriteLog(chCalc + " = " + resultScreen.Text);
-                recentScreen.Text = chCalc;
+                if (userFunc.NumberCheck(resultScreen.Text, 1) == 0 || userFunc.NumberCheck(resultScreen.Text, 1) == 4)
+                { // 저장된 수식을 계산하고 resultScreen에 결과 출력
+                    string chCalc = BracketInsert(resultScreen.Text, "cal");
+                    List<String> postModification = userFunc.CalStackUse(chCalc);
+                    resultScreen.Text = userFunc.CalPostModification(postModification).ToString();
+                    WriteLog(chCalc + " = " + resultScreen.Text);
+                    recentScreen.Text = chCalc;
+                }
+                logList.Columns[logList.Columns.Count - 1].Width = -2;
+
+
             }
             else if (inputText == delBtn.Text)
             {
                 if (resultScreen.Text.Length > 0)
                 {
-                    if (resultScreen.Text.Length > 1 && NumberCheck(resultScreen.Text, 2) == 7)
+                    if (resultScreen.Text.Length > 1 && userFunc.NumberCheck(resultScreen.Text, 2) == 7)
                     {
                         resultScreen.Text = resultScreen.Text.Substring(0, resultScreen.Text.Length - 2);
                     }
@@ -221,29 +192,29 @@ namespace CalculatorApp
             }
             else if (inputText == percentBtn.Text)
             {
-                if (NumberCheck(resultScreen.Text, 1) == 1) //이전에 .을 입력했다면 입력제한
+                if (userFunc.NumberCheck(resultScreen.Text, 1) == 1) //이전에 .을 입력했다면 입력제한
                 {
                     return;
                 }
-                else if (NumberCheck(resultScreen.Text, 1) == 0 || NumberCheck(resultScreen.Text, 1) == 4)
+                else if (userFunc.NumberCheck(resultScreen.Text, 1) == 0 || userFunc.NumberCheck(resultScreen.Text, 1) == 4)
                 {
                     resultScreen.Text += "*1/100";
                 }
             }
             else if (inputText == minusBtn.Text)
             {
-                if (NumberCheck(resultScreen.Text, 1) == 0 || NumberCheck(resultScreen.Text, 1) == 4)
+                if (userFunc.NumberCheck(resultScreen.Text, 1) == 0 || userFunc.NumberCheck(resultScreen.Text, 1) == 4)
                 {
                     resultScreen.Text += "－";//계산용 수식 
                 }
-                else if (NumberCheck(resultScreen.Text, 1) == 3)//열린괄호 뒤로 갈땐 음수 값을 입력하게된다
+                else if (userFunc.NumberCheck(resultScreen.Text, 1) == 3)//열린괄호 뒤로 갈땐 음수 값을 입력하게된다
                 {
                     resultScreen.Text += inputText;
                 }
             }
             else
             {
-                if (NumberCheck(resultScreen.Text, 1) == 0 || NumberCheck(resultScreen.Text, 1) == 4)//숫자,닫힌괄호 뒤로 올시 입력
+                if (userFunc.NumberCheck(resultScreen.Text, 1) == 0 || userFunc.NumberCheck(resultScreen.Text, 1) == 4)//숫자,닫힌괄호 뒤로 올시 입력
                 {
                     resultScreen.Text += inputText;
                 }
@@ -273,9 +244,8 @@ namespace CalculatorApp
 
         private void ResultScreen_TextChanged(object sender, EventArgs e) // recentScreen에 실시간 계산 표시
         {
-            if (resultScreen.Text.Length > 0 && (NumberCheck(resultScreen.Text, 1) == 0 || NumberCheck(resultScreen.Text, 1) == 4))
+            if (resultScreen.Text.Length > 0 && (userFunc.NumberCheck(resultScreen.Text, 1) == 0 || userFunc.NumberCheck(resultScreen.Text, 1) == 4))
             {
-                UserFunction userFunc = new UserFunction();
                 List<String> postModification = userFunc.CalStackUse(BracketInsert(resultScreen.Text, "cal"));
                 recentScreen.Text = userFunc.CalPostModification(postModification).ToString();
             }
@@ -288,6 +258,8 @@ namespace CalculatorApp
         private void ListClearBtn_Click(object sender, EventArgs e)
         {
             logList.Clear();
+            ColumnHeader columnHeader1 = new ColumnHeader();
+            logList.Columns.Add(columnHeader1);
         }
     }
 }

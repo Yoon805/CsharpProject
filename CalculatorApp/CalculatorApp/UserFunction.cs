@@ -29,11 +29,11 @@ namespace CalculatorApp
                     case '-':
                         numbersSaveTemp += temp[i].ToString();
                         break;
-                    // 기호가 나왔을 시 저장되어있던 숫자를 mathlist에 저장
                     case '(':
                     case '*':
                     case '/':
                     case '^':
+                        // 기호가 나왔을 시 저장되어있던 숫자를 mathlist에 저장
                         if (numbersSaveTemp.Length != 0)
                         {
                             mathList.Add(numbersSaveTemp);
@@ -78,11 +78,11 @@ namespace CalculatorApp
                             mathList.Add(numbersSaveTemp);
                             numbersSaveTemp = "";
                         }
-                        //제곱 연산자는 단항 연산자로 다른 연산자와 다르게 앞에 들어가므로
-                        //따로 처리하여 연산 한뒤 반환해준다.
+                        //제곱근 연산자는 단항 연산자로 다른 연산자와 다르게 앞에 들어가므로
+                        //제곱근 안을 따로 처리하여 연산 한뒤 반환해준다.
                         string rootString = "(";
                         int bracketNumCheck = 1;
-                        int j = i+2;
+                        int j = i + 2;
                         while (bracketNumCheck > 0)
                         {
                             if (temp[j].Equals('('))
@@ -95,21 +95,42 @@ namespace CalculatorApp
                                 bracketNumCheck--;
                                 rootString += temp[j];
                             }
-                            else {
+                            else
+                            {
                                 rootString += temp[j];
                             }
                             j++;
                         }
                         List<String> postModification = CalStackUse(rootString);
-                        i = j ; // 미리 계산한 갯수만큼 들어갈 수  변경
-                        string result = Math.Sqrt(CalPostModification(postModification)).ToString();
-                        result = '0' + result;
-                        for (int k = i; k<temp.Length; k++)
+                        i = j; // 미리 계산한 갯수만큼 들어갈 수  변경
+                        string result = Math.Sqrt(CalPostModification(postModification)).ToString("F3");
+                        for (int k = i; k < temp.Length; k++)
                         {
                             result += temp[k];
                         }
-                        temp = result;
-                        i = 0;
+                        temp = result; // 구한 값을 맨 앞으로 넣어서 다시 for문 반복
+                        i = -1; // 바로 다음 시도에서 i++이 실행되므로 -1부터 시작
+                        break;
+                    case 'E':
+                        // 지수표기법에 의해 E가 포함된 경우 처리
+                        string exponentString = "*10^(";
+                        j = i + 1;
+                        exponentString = (NumberCheck(temp, temp.Length - j) == 5) ? exponentString + "-" : exponentString;
+                        j++;
+
+                        while (temp.Length - j > 0 && NumberCheck(temp, temp.Length - j) == 0)
+                        {
+                            exponentString += temp[j];
+                            j++;
+                        }
+                        exponentString += ")";
+                        i = j;
+                        for (int k = i; k < temp.Length; k++)
+                        {
+                            exponentString += temp[k];
+                        }
+                        temp = exponentString; // 구한 값을 맨 앞으로 넣어서 다시 for문 반복
+                        i = -1; // 바로 다음 시도에서 i++이 실행되므로 -1부터 시작
                         break;
                 }
 
@@ -162,5 +183,40 @@ namespace CalculatorApp
             }
             return numberStack.Pop();
         }
+
+        // 뒤에서 n번째로 입력한 숫자 체크
+        public int NumberCheck(string screenText, int number)
+        {
+            switch (screenText[screenText.Length - number])
+            {
+                case '0':
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                case '9':
+                    return 0;
+                case '.':
+                    return 1;
+                case '-'://숫자로 받을 값들
+                    return 2;
+                case '(':
+                    return 3;
+                case ')':
+                    return 4;
+                case '－':
+                    return 5;
+                case '√':
+                    return 7;
+                default:// 연산자
+                    return 6;
+            }
+        }
     }
+
+
 }
