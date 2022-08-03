@@ -5,11 +5,9 @@ namespace CalculatorApp
 {
     internal class UserFunction
     {
-        public List<String> CalStackUse(string temp)
+        public List<String> CalStackUse(string temp)//후위표기법으로 변환
         {
-            //string temp = "1+2*3+(4+2)/2";
-            char[] numbers = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
-            String numbersSaveTemp = "";
+            String numbersSaveTemp = "";//숫자 임시 저장
             List<String> mathList = new List<String>();//전체 식 저장
             Stack<string> expsStack = new Stack<string>();//기호 임시 저장
 
@@ -30,6 +28,7 @@ namespace CalculatorApp
                     case '.':
                         numbersSaveTemp += temp[i].ToString();
                         break;
+                    // 기호가 나왔을 시 저장되어있던 숫자를 mathlist에 저장
                     case '(':
                     case '*':
                     case '/':
@@ -47,14 +46,12 @@ namespace CalculatorApp
                             mathList.Add(numbersSaveTemp);
                             numbersSaveTemp = "";
                         }
-                        if (expsStack.Count != 0)
+                        while (expsStack.Count > 0)
                         {
-                            while (expsStack.Count > 0)
-                            {
-                                if (expsStack.Peek().Equals("(")) { break; }
-                                mathList.Add(expsStack.Pop().ToString());
-                            }
+                            if (expsStack.Peek().Equals("(")) { break; }
+                            mathList.Add(expsStack.Pop().ToString());
                         }
+
                         expsStack.Push(temp[i].ToString());
                         break;
                     case ')':
@@ -63,18 +60,16 @@ namespace CalculatorApp
                             mathList.Add(numbersSaveTemp);
                             numbersSaveTemp = "";
                         }
-                        if (expsStack.Count != 0)
+                        while (expsStack.Count > 0)
                         {
-                            while (expsStack.Count > 0)
+                            if (expsStack.Peek().Equals("("))
                             {
-                                if (expsStack.Peek().Equals("("))
-                                {
-                                    expsStack.Pop();
-                                    break;
-                                }
-                                mathList.Add(expsStack.Pop().ToString());
+                                expsStack.Pop();
+                                break;
                             }
+                            mathList.Add(expsStack.Pop().ToString());
                         }
+
                         break;
                 }
 
@@ -88,31 +83,17 @@ namespace CalculatorApp
             {
                 mathList.Add(expsStack.Pop().ToString());
             }
-            Console.WriteLine(mathList);
             return mathList; // 저장된 후위수식 return
         }
 
-        public double CalPostModification(List<String> PostMod)
+        public double CalPostModification(List<String> PostMod)//후위수식을 받아 계산하기
         {
-            Stack<double> numberStack = new Stack<double>();
+            Stack<double> numberStack = new Stack<double>();//숫자 임시 저장, 소수계산을 위해 double로 치환 저장
             double result;
             for (int i = 0; i < PostMod.Count; i++)
             {
                 switch (PostMod[i])
                 {
-                    case "0":
-                    case "1":
-                    case "2":
-                    case "3":
-                    case "4":
-                    case "5":
-                    case "6":
-                    case "7":
-                    case "8":
-                    case "9":
-                    case ".":
-                        numberStack.Push(Double.Parse(PostMod[i]));
-                        break;
                     case "+":
                         result = numberStack.Pop() + numberStack.Pop();
                         numberStack.Push(result);
@@ -129,13 +110,12 @@ namespace CalculatorApp
                         result = 1 / numberStack.Pop() * numberStack.Pop();
                         numberStack.Push(result);
                         break;
+                    default: //숫자일시 저장
+                        numberStack.Push(Double.Parse(PostMod[i]));
+                        break;
                 }
             }
             return numberStack.Pop();
         }
     }
-
-
-
-
 }

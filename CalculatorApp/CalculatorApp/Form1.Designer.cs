@@ -64,6 +64,8 @@
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
             this.logList = new MetroFramework.Controls.MetroListView();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.listClearBtn = new MetroFramework.Controls.MetroButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -72,6 +74,7 @@
             this.splitContainer1.SuspendLayout();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -93,7 +96,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(297, 476);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(233, 391);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // userToggleButton1
@@ -103,7 +106,7 @@
             this.userToggleButton1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.userToggleButton1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.userToggleButton1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.userToggleButton1.Location = new System.Drawing.Point(263, 2);
+            this.userToggleButton1.Location = new System.Drawing.Point(199, 2);
             this.userToggleButton1.Margin = new System.Windows.Forms.Padding(2);
             this.userToggleButton1.MinimumSize = new System.Drawing.Size(32, 16);
             this.userToggleButton1.Name = "userToggleButton1";
@@ -111,7 +114,7 @@
             this.userToggleButton1.OffToggleColor = System.Drawing.Color.Gainsboro;
             this.userToggleButton1.OnBackColor = System.Drawing.Color.DarkTurquoise;
             this.userToggleButton1.OnToggleColor = System.Drawing.Color.WhiteSmoke;
-            this.userToggleButton1.Size = new System.Drawing.Size(32, 18);
+            this.userToggleButton1.Size = new System.Drawing.Size(32, 16);
             this.userToggleButton1.TabIndex = 2;
             this.userToggleButton1.UseVisualStyleBackColor = true;
             this.userToggleButton1.CheckedChanged += new System.EventHandler(this.UserToggleButton1_CheckedChanged);
@@ -150,7 +153,7 @@
             this.tableLayoutPanel2.Controls.Add(this.squaredBtn, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.inverseBtn, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 208);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 174);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 6;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
@@ -159,7 +162,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(291, 265);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(227, 214);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // delBtn
@@ -172,9 +175,9 @@
             this.delBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.delBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.delBtn.ForeColor = System.Drawing.Color.Black;
-            this.delBtn.Location = new System.Drawing.Point(219, 3);
+            this.delBtn.Location = new System.Drawing.Point(171, 3);
             this.delBtn.Name = "delBtn";
-            this.delBtn.Size = new System.Drawing.Size(69, 38);
+            this.delBtn.Size = new System.Drawing.Size(53, 29);
             this.delBtn.Style = MetroFramework.MetroColorStyle.Orange;
             this.delBtn.TabIndex = 0;
             this.delBtn.Text = "←";
@@ -190,9 +193,9 @@
             this.equalBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.equalBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.equalBtn.ForeColor = System.Drawing.Color.Black;
-            this.equalBtn.Location = new System.Drawing.Point(219, 223);
+            this.equalBtn.Location = new System.Drawing.Point(171, 178);
             this.equalBtn.Name = "equalBtn";
-            this.equalBtn.Size = new System.Drawing.Size(69, 39);
+            this.equalBtn.Size = new System.Drawing.Size(53, 33);
             this.equalBtn.Style = MetroFramework.MetroColorStyle.Orange;
             this.equalBtn.TabIndex = 0;
             this.equalBtn.Text = "＝";
@@ -209,9 +212,9 @@
             this.dotBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.dotBtn.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.dotBtn.ForeColor = System.Drawing.Color.Black;
-            this.dotBtn.Location = new System.Drawing.Point(147, 223);
+            this.dotBtn.Location = new System.Drawing.Point(115, 178);
             this.dotBtn.Name = "dotBtn";
-            this.dotBtn.Size = new System.Drawing.Size(66, 39);
+            this.dotBtn.Size = new System.Drawing.Size(50, 33);
             this.dotBtn.TabIndex = 0;
             this.dotBtn.Text = ".";
             this.dotBtn.UseCustomBackColor = true;
@@ -227,9 +230,9 @@
             this.numBtn0.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.numBtn0.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.numBtn0.ForeColor = System.Drawing.Color.Black;
-            this.numBtn0.Location = new System.Drawing.Point(75, 223);
+            this.numBtn0.Location = new System.Drawing.Point(59, 178);
             this.numBtn0.Name = "numBtn0";
-            this.numBtn0.Size = new System.Drawing.Size(66, 39);
+            this.numBtn0.Size = new System.Drawing.Size(50, 33);
             this.numBtn0.TabIndex = 0;
             this.numBtn0.Text = "0";
             this.numBtn0.UseCustomBackColor = true;
@@ -245,9 +248,9 @@
             this.numBtn00.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.numBtn00.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.numBtn00.ForeColor = System.Drawing.Color.Black;
-            this.numBtn00.Location = new System.Drawing.Point(3, 223);
+            this.numBtn00.Location = new System.Drawing.Point(3, 178);
             this.numBtn00.Name = "numBtn00";
-            this.numBtn00.Size = new System.Drawing.Size(66, 39);
+            this.numBtn00.Size = new System.Drawing.Size(50, 33);
             this.numBtn00.TabIndex = 0;
             this.numBtn00.Text = "00";
             this.numBtn00.UseCustomBackColor = true;
@@ -263,9 +266,9 @@
             this.numBtn1.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.numBtn1.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.numBtn1.ForeColor = System.Drawing.Color.Black;
-            this.numBtn1.Location = new System.Drawing.Point(3, 179);
+            this.numBtn1.Location = new System.Drawing.Point(3, 143);
             this.numBtn1.Name = "numBtn1";
-            this.numBtn1.Size = new System.Drawing.Size(66, 38);
+            this.numBtn1.Size = new System.Drawing.Size(50, 29);
             this.numBtn1.TabIndex = 0;
             this.numBtn1.Text = "1";
             this.numBtn1.UseCustomBackColor = true;
@@ -281,9 +284,9 @@
             this.numBtn2.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.numBtn2.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.numBtn2.ForeColor = System.Drawing.Color.Black;
-            this.numBtn2.Location = new System.Drawing.Point(75, 179);
+            this.numBtn2.Location = new System.Drawing.Point(59, 143);
             this.numBtn2.Name = "numBtn2";
-            this.numBtn2.Size = new System.Drawing.Size(66, 38);
+            this.numBtn2.Size = new System.Drawing.Size(50, 29);
             this.numBtn2.TabIndex = 0;
             this.numBtn2.Text = "2";
             this.numBtn2.UseCustomBackColor = true;
@@ -299,9 +302,9 @@
             this.numBtn3.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.numBtn3.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.numBtn3.ForeColor = System.Drawing.Color.Black;
-            this.numBtn3.Location = new System.Drawing.Point(147, 179);
+            this.numBtn3.Location = new System.Drawing.Point(115, 143);
             this.numBtn3.Name = "numBtn3";
-            this.numBtn3.Size = new System.Drawing.Size(66, 38);
+            this.numBtn3.Size = new System.Drawing.Size(50, 29);
             this.numBtn3.TabIndex = 0;
             this.numBtn3.Text = "3";
             this.numBtn3.UseCustomBackColor = true;
@@ -316,9 +319,9 @@
             this.plusBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plusBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.plusBtn.ForeColor = System.Drawing.Color.Black;
-            this.plusBtn.Location = new System.Drawing.Point(219, 179);
+            this.plusBtn.Location = new System.Drawing.Point(171, 143);
             this.plusBtn.Name = "plusBtn";
-            this.plusBtn.Size = new System.Drawing.Size(69, 38);
+            this.plusBtn.Size = new System.Drawing.Size(53, 29);
             this.plusBtn.Style = MetroFramework.MetroColorStyle.Blue;
             this.plusBtn.TabIndex = 0;
             this.plusBtn.Text = "+";
@@ -333,9 +336,9 @@
             this.minusBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.minusBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.minusBtn.ForeColor = System.Drawing.Color.Black;
-            this.minusBtn.Location = new System.Drawing.Point(219, 135);
+            this.minusBtn.Location = new System.Drawing.Point(171, 108);
             this.minusBtn.Name = "minusBtn";
-            this.minusBtn.Size = new System.Drawing.Size(69, 38);
+            this.minusBtn.Size = new System.Drawing.Size(53, 29);
             this.minusBtn.Style = MetroFramework.MetroColorStyle.Blue;
             this.minusBtn.TabIndex = 0;
             this.minusBtn.Text = "-";
@@ -351,9 +354,9 @@
             this.numBtn6.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.numBtn6.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.numBtn6.ForeColor = System.Drawing.Color.Black;
-            this.numBtn6.Location = new System.Drawing.Point(147, 135);
+            this.numBtn6.Location = new System.Drawing.Point(115, 108);
             this.numBtn6.Name = "numBtn6";
-            this.numBtn6.Size = new System.Drawing.Size(66, 38);
+            this.numBtn6.Size = new System.Drawing.Size(50, 29);
             this.numBtn6.TabIndex = 0;
             this.numBtn6.Text = "6";
             this.numBtn6.UseCustomBackColor = true;
@@ -369,9 +372,9 @@
             this.numBtn5.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.numBtn5.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.numBtn5.ForeColor = System.Drawing.Color.Black;
-            this.numBtn5.Location = new System.Drawing.Point(75, 135);
+            this.numBtn5.Location = new System.Drawing.Point(59, 108);
             this.numBtn5.Name = "numBtn5";
-            this.numBtn5.Size = new System.Drawing.Size(66, 38);
+            this.numBtn5.Size = new System.Drawing.Size(50, 29);
             this.numBtn5.TabIndex = 0;
             this.numBtn5.Text = "5";
             this.numBtn5.UseCustomBackColor = true;
@@ -387,9 +390,9 @@
             this.numBtn4.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.numBtn4.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.numBtn4.ForeColor = System.Drawing.Color.Black;
-            this.numBtn4.Location = new System.Drawing.Point(3, 135);
+            this.numBtn4.Location = new System.Drawing.Point(3, 108);
             this.numBtn4.Name = "numBtn4";
-            this.numBtn4.Size = new System.Drawing.Size(66, 38);
+            this.numBtn4.Size = new System.Drawing.Size(50, 29);
             this.numBtn4.TabIndex = 0;
             this.numBtn4.Text = "4";
             this.numBtn4.UseCustomBackColor = true;
@@ -405,9 +408,9 @@
             this.numBtn7.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.numBtn7.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.numBtn7.ForeColor = System.Drawing.Color.Black;
-            this.numBtn7.Location = new System.Drawing.Point(3, 91);
+            this.numBtn7.Location = new System.Drawing.Point(3, 73);
             this.numBtn7.Name = "numBtn7";
-            this.numBtn7.Size = new System.Drawing.Size(66, 38);
+            this.numBtn7.Size = new System.Drawing.Size(50, 29);
             this.numBtn7.TabIndex = 0;
             this.numBtn7.Text = "7";
             this.numBtn7.UseCustomBackColor = true;
@@ -423,9 +426,9 @@
             this.numBtn8.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.numBtn8.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.numBtn8.ForeColor = System.Drawing.Color.Black;
-            this.numBtn8.Location = new System.Drawing.Point(75, 91);
+            this.numBtn8.Location = new System.Drawing.Point(59, 73);
             this.numBtn8.Name = "numBtn8";
-            this.numBtn8.Size = new System.Drawing.Size(66, 38);
+            this.numBtn8.Size = new System.Drawing.Size(50, 29);
             this.numBtn8.TabIndex = 0;
             this.numBtn8.Text = "8";
             this.numBtn8.UseCustomBackColor = true;
@@ -441,9 +444,9 @@
             this.numBtn9.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.numBtn9.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.numBtn9.ForeColor = System.Drawing.Color.Black;
-            this.numBtn9.Location = new System.Drawing.Point(147, 91);
+            this.numBtn9.Location = new System.Drawing.Point(115, 73);
             this.numBtn9.Name = "numBtn9";
-            this.numBtn9.Size = new System.Drawing.Size(66, 38);
+            this.numBtn9.Size = new System.Drawing.Size(50, 29);
             this.numBtn9.TabIndex = 0;
             this.numBtn9.Text = "9";
             this.numBtn9.UseCustomBackColor = true;
@@ -458,9 +461,9 @@
             this.mulBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mulBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.mulBtn.ForeColor = System.Drawing.Color.Black;
-            this.mulBtn.Location = new System.Drawing.Point(219, 91);
+            this.mulBtn.Location = new System.Drawing.Point(171, 73);
             this.mulBtn.Name = "mulBtn";
-            this.mulBtn.Size = new System.Drawing.Size(69, 38);
+            this.mulBtn.Size = new System.Drawing.Size(53, 29);
             this.mulBtn.Style = MetroFramework.MetroColorStyle.Blue;
             this.mulBtn.TabIndex = 0;
             this.mulBtn.Text = "*";
@@ -475,9 +478,9 @@
             this.divBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.divBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.divBtn.ForeColor = System.Drawing.Color.Black;
-            this.divBtn.Location = new System.Drawing.Point(219, 47);
+            this.divBtn.Location = new System.Drawing.Point(171, 38);
             this.divBtn.Name = "divBtn";
-            this.divBtn.Size = new System.Drawing.Size(69, 38);
+            this.divBtn.Size = new System.Drawing.Size(53, 29);
             this.divBtn.Style = MetroFramework.MetroColorStyle.Blue;
             this.divBtn.TabIndex = 0;
             this.divBtn.Text = "/";
@@ -492,9 +495,9 @@
             this.bracketBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bracketBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.bracketBtn.ForeColor = System.Drawing.Color.Black;
-            this.bracketBtn.Location = new System.Drawing.Point(75, 3);
+            this.bracketBtn.Location = new System.Drawing.Point(59, 3);
             this.bracketBtn.Name = "bracketBtn";
-            this.bracketBtn.Size = new System.Drawing.Size(66, 38);
+            this.bracketBtn.Size = new System.Drawing.Size(50, 29);
             this.bracketBtn.Style = MetroFramework.MetroColorStyle.Blue;
             this.bracketBtn.TabIndex = 0;
             this.bracketBtn.Text = "( )";
@@ -509,9 +512,9 @@
             this.clearBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.clearBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.clearBtn.ForeColor = System.Drawing.Color.Black;
-            this.clearBtn.Location = new System.Drawing.Point(147, 3);
+            this.clearBtn.Location = new System.Drawing.Point(115, 3);
             this.clearBtn.Name = "clearBtn";
-            this.clearBtn.Size = new System.Drawing.Size(66, 38);
+            this.clearBtn.Size = new System.Drawing.Size(50, 29);
             this.clearBtn.Style = MetroFramework.MetroColorStyle.Blue;
             this.clearBtn.TabIndex = 0;
             this.clearBtn.Text = "C";
@@ -528,7 +531,7 @@
             this.percentBtn.ForeColor = System.Drawing.Color.Black;
             this.percentBtn.Location = new System.Drawing.Point(3, 3);
             this.percentBtn.Name = "percentBtn";
-            this.percentBtn.Size = new System.Drawing.Size(66, 38);
+            this.percentBtn.Size = new System.Drawing.Size(50, 29);
             this.percentBtn.Style = MetroFramework.MetroColorStyle.Blue;
             this.percentBtn.TabIndex = 0;
             this.percentBtn.Text = "%";
@@ -543,9 +546,9 @@
             this.rootBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rootBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.rootBtn.ForeColor = System.Drawing.Color.Black;
-            this.rootBtn.Location = new System.Drawing.Point(147, 47);
+            this.rootBtn.Location = new System.Drawing.Point(115, 38);
             this.rootBtn.Name = "rootBtn";
-            this.rootBtn.Size = new System.Drawing.Size(66, 38);
+            this.rootBtn.Size = new System.Drawing.Size(50, 29);
             this.rootBtn.Style = MetroFramework.MetroColorStyle.Blue;
             this.rootBtn.TabIndex = 0;
             this.rootBtn.Text = "√";
@@ -560,9 +563,9 @@
             this.squaredBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.squaredBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.squaredBtn.ForeColor = System.Drawing.Color.Black;
-            this.squaredBtn.Location = new System.Drawing.Point(75, 47);
+            this.squaredBtn.Location = new System.Drawing.Point(59, 38);
             this.squaredBtn.Name = "squaredBtn";
-            this.squaredBtn.Size = new System.Drawing.Size(66, 38);
+            this.squaredBtn.Size = new System.Drawing.Size(50, 29);
             this.squaredBtn.Style = MetroFramework.MetroColorStyle.Blue;
             this.squaredBtn.TabIndex = 0;
             this.squaredBtn.Text = "x^2";
@@ -577,9 +580,9 @@
             this.inverseBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.inverseBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.inverseBtn.ForeColor = System.Drawing.Color.Black;
-            this.inverseBtn.Location = new System.Drawing.Point(3, 47);
+            this.inverseBtn.Location = new System.Drawing.Point(3, 38);
             this.inverseBtn.Name = "inverseBtn";
-            this.inverseBtn.Size = new System.Drawing.Size(66, 38);
+            this.inverseBtn.Size = new System.Drawing.Size(50, 29);
             this.inverseBtn.Style = MetroFramework.MetroColorStyle.Blue;
             this.inverseBtn.TabIndex = 0;
             this.inverseBtn.Text = "1/x";
@@ -593,11 +596,11 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 182);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 148);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(291, 20);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(227, 20);
             this.tableLayoutPanel3.TabIndex = 1;
             // 
             // recentScreen
@@ -607,10 +610,10 @@
             this.recentScreen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.recentScreen.Enabled = false;
             this.recentScreen.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.recentScreen.Location = new System.Drawing.Point(3, 115);
+            this.recentScreen.Location = new System.Drawing.Point(3, 94);
             this.recentScreen.Name = "recentScreen";
             this.recentScreen.PaintTileCount = false;
-            this.recentScreen.Size = new System.Drawing.Size(291, 61);
+            this.recentScreen.Size = new System.Drawing.Size(227, 48);
             this.recentScreen.TabIndex = 2;
             this.recentScreen.Text = "recentScreen";
             this.recentScreen.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -625,10 +628,10 @@
             this.resultScreen.BackColor = System.Drawing.Color.WhiteSmoke;
             this.resultScreen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.resultScreen.Enabled = false;
-            this.resultScreen.Location = new System.Drawing.Point(3, 25);
+            this.resultScreen.Location = new System.Drawing.Point(3, 21);
             this.resultScreen.Name = "resultScreen";
             this.resultScreen.PaintTileCount = false;
-            this.resultScreen.Size = new System.Drawing.Size(291, 84);
+            this.resultScreen.Size = new System.Drawing.Size(227, 67);
             this.resultScreen.TabIndex = 3;
             this.resultScreen.Text = "resultScreen";
             this.resultScreen.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -652,8 +655,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.metroTabControl1);
             this.splitContainer1.Panel2MinSize = 0;
-            this.splitContainer1.Size = new System.Drawing.Size(598, 476);
-            this.splitContainer1.SplitterDistance = 297;
+            this.splitContainer1.Size = new System.Drawing.Size(473, 391);
+            this.splitContainer1.SplitterDistance = 233;
             this.splitContainer1.TabIndex = 1;
             // 
             // metroTabControl1
@@ -665,21 +668,21 @@
             this.metroTabControl1.Location = new System.Drawing.Point(0, 0);
             this.metroTabControl1.Name = "metroTabControl1";
             this.metroTabControl1.SelectedIndex = 0;
-            this.metroTabControl1.Size = new System.Drawing.Size(297, 476);
+            this.metroTabControl1.Size = new System.Drawing.Size(236, 391);
             this.metroTabControl1.TabIndex = 0;
             this.metroTabControl1.UseSelectable = true;
             // 
             // metroTabPage1
             // 
             this.metroTabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.metroTabPage1.Controls.Add(this.logList);
+            this.metroTabPage1.Controls.Add(this.tableLayoutPanel4);
             this.metroTabPage1.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.metroTabPage1.HorizontalScrollbarBarColor = false;
             this.metroTabPage1.HorizontalScrollbarHighlightOnWheel = false;
             this.metroTabPage1.HorizontalScrollbarSize = 0;
             this.metroTabPage1.Location = new System.Drawing.Point(4, 44);
             this.metroTabPage1.Name = "metroTabPage1";
-            this.metroTabPage1.Size = new System.Drawing.Size(289, 428);
+            this.metroTabPage1.Size = new System.Drawing.Size(228, 343);
             this.metroTabPage1.TabIndex = 0;
             this.metroTabPage1.Text = "기록";
             this.metroTabPage1.UseCustomForeColor = true;
@@ -693,20 +696,47 @@
             this.logList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.logList.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.logList.FullRowSelect = true;
-            this.logList.Location = new System.Drawing.Point(0, 0);
+            this.logList.Location = new System.Drawing.Point(3, 23);
             this.logList.Name = "logList";
             this.logList.OwnerDraw = true;
-            this.logList.Size = new System.Drawing.Size(289, 428);
+            this.logList.Size = new System.Drawing.Size(222, 317);
             this.logList.TabIndex = 2;
             this.logList.UseCompatibleStateImageBehavior = false;
             this.logList.UseSelectable = true;
             this.logList.View = System.Windows.Forms.View.List;
             // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.BackColor = System.Drawing.SystemColors.Window;
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.logList, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.listClearBtn, 0, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(228, 343);
+            this.tableLayoutPanel4.TabIndex = 3;
+            // 
+            // listClearBtn
+            // 
+            this.listClearBtn.Dock = System.Windows.Forms.DockStyle.Right;
+            this.listClearBtn.Location = new System.Drawing.Point(150, 3);
+            this.listClearBtn.Name = "listClearBtn";
+            this.listClearBtn.Size = new System.Drawing.Size(75, 14);
+            this.listClearBtn.TabIndex = 3;
+            this.listClearBtn.Text = "기록 지우기";
+            this.listClearBtn.UseSelectable = true;
+            this.listClearBtn.Click += new System.EventHandler(this.ListClearBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 11F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(618, 545);
+            this.ClientSize = new System.Drawing.Size(493, 460);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -725,6 +755,7 @@
             this.splitContainer1.ResumeLayout(false);
             this.metroTabControl1.ResumeLayout(false);
             this.metroTabPage1.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -765,6 +796,8 @@
         private MetroFramework.Controls.MetroButton inverseBtn;
         private MetroFramework.Controls.MetroButton rootBtn;
         private MetroFramework.Controls.MetroButton squaredBtn;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private MetroFramework.Controls.MetroButton listClearBtn;
     }
 }
 
