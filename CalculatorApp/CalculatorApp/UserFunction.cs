@@ -5,8 +5,6 @@ namespace CalculatorApp
 {
     internal class UserFunction
     {
-
-
         public List<String> CalStackUse(string temp)
         {
             //string temp = "1+2*3+(4+2)/2";
@@ -17,50 +15,56 @@ namespace CalculatorApp
 
             for (int i = 0; i < temp.Length; i++)
             {
-                bool numCheck = false;
-                for (int j = 0; j < numbers.Length; j++) //숫자체크
+                switch (temp[i])
                 {
-                    if (temp[i].Equals(numbers[j]) || temp[i].Equals('.'))
-                    {
-                        numbersSaveTemp += temp[i];
-                        numCheck = true;
+                    case '0':
+                    case '1':
+                    case '2':
+                    case '3':
+                    case '4':
+                    case '5':
+                    case '6':
+                    case '7':
+                    case '8':
+                    case '9':
+                    case '.':
+                        numbersSaveTemp += temp[i].ToString();
                         break;
-                    }
-                }
-
-                if (!numCheck)// 기호가 나왔을 시
-                {
-                    if (numbersSaveTemp.Length != 0)
-                    {
-                        mathList.Add(numbersSaveTemp);
-                        numbersSaveTemp = "";
-                    }
-
-
-                    if (temp[i].Equals('('))
-                    {
+                    case '(':
+                    case '*':
+                    case '/':
+                        if (numbersSaveTemp.Length != 0)
+                        {
+                            mathList.Add(numbersSaveTemp);
+                            numbersSaveTemp = "";
+                        }
                         expsStack.Push(temp[i].ToString());
-                    }
-                    else if (temp[i].Equals('*') || temp[i].Equals('/'))
-                    {
-                        expsStack.Push(temp[i].ToString());
-                    }
-                    else if (temp[i].Equals('+') || temp[i].Equals('-'))
-                    {
+                        break;
+                    case '+':
+                    case '-':
+                        if (numbersSaveTemp.Length != 0)
+                        {
+                            mathList.Add(numbersSaveTemp);
+                            numbersSaveTemp = "";
+                        }
                         if (expsStack.Count != 0)
                         {
-                            while (expsStack.Count > 0 || expsStack.Peek().Equals("("))
+                            while (expsStack.Count > 0)
                             {
+                                if (expsStack.Peek().Equals("(")) { break; }
                                 mathList.Add(expsStack.Pop().ToString());
                             }
                         }
                         expsStack.Push(temp[i].ToString());
-
-                    }
-                    else if (temp[i].Equals(')'))
-                    {
+                        break;
+                    case ')':
+                        if (numbersSaveTemp.Length != 0)
+                        {
+                            mathList.Add(numbersSaveTemp);
+                            numbersSaveTemp = "";
+                        }
                         if (expsStack.Count != 0)
-                        {                        
+                        {
                             while (expsStack.Count > 0)
                             {
                                 if (expsStack.Peek().Equals("("))
@@ -71,9 +75,9 @@ namespace CalculatorApp
                                 mathList.Add(expsStack.Pop().ToString());
                             }
                         }
-                    }
-
+                        break;
                 }
+
             }
             if (numbersSaveTemp != "")
             {
@@ -84,13 +88,7 @@ namespace CalculatorApp
             {
                 mathList.Add(expsStack.Pop().ToString());
             }
-
-            Console.WriteLine(mathList.Count);
-            for (int i = 0; i < mathList.Count; i++)
-            {
-                Console.WriteLine(mathList[i].ToString());
-            }
-
+            Console.WriteLine(mathList);
             return mathList; // 저장된 후위수식 return
         }
 
@@ -100,30 +98,37 @@ namespace CalculatorApp
             double result;
             for (int i = 0; i < PostMod.Count; i++)
             {
-
-                if (PostMod[i].Equals("+"))
+                switch (PostMod[i])
                 {
-                    result = numberStack.Pop() + numberStack.Pop();
-                    numberStack.Push(result);
-                }
-                else if (PostMod[i].Equals("-"))
-                {
-                    result = 0 - numberStack.Pop() + numberStack.Pop();
-                    numberStack.Push(result);
-                }
-                else if (PostMod[i].Equals("*"))
-                {
-                    result = numberStack.Pop() * numberStack.Pop();
-                    numberStack.Push(result);
-                }
-                else if (PostMod[i].Equals("/"))
-                {
-                    result = 1 / numberStack.Pop() * numberStack.Pop();
-                    numberStack.Push(result);
-                }
-                else
-                {
-                    numberStack.Push(Double.Parse(PostMod[i]));
+                    case "0":
+                    case "1":
+                    case "2":
+                    case "3":
+                    case "4":
+                    case "5":
+                    case "6":
+                    case "7":
+                    case "8":
+                    case "9":
+                    case ".":
+                        numberStack.Push(Double.Parse(PostMod[i]));
+                        break;
+                    case "+":
+                        result = numberStack.Pop() + numberStack.Pop();
+                        numberStack.Push(result);
+                        break;
+                    case "-":
+                        result = 0 - numberStack.Pop() + numberStack.Pop();
+                        numberStack.Push(result);
+                        break;
+                    case "*":
+                        result = numberStack.Pop() * numberStack.Pop();
+                        numberStack.Push(result);
+                        break;
+                    case "/":
+                        result = 1 / numberStack.Pop() * numberStack.Pop();
+                        numberStack.Push(result);
+                        break;
                 }
             }
             return numberStack.Pop();
