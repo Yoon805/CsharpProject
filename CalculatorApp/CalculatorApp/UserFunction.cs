@@ -26,7 +26,7 @@ namespace CalculatorApp
                     case '8':
                     case '9':
                     case '.':
-                    case '-': 
+                    case '-':
                         numbersSaveTemp += temp[i].ToString();
                         break;
                     // 기호가 나왔을 시 저장되어있던 숫자를 mathlist에 저장
@@ -80,8 +80,36 @@ namespace CalculatorApp
                         }
                         //제곱 연산자는 단항 연산자로 다른 연산자와 다르게 앞에 들어가므로
                         //따로 처리하여 연산 한뒤 반환해준다.
-
-
+                        string rootString = "(";
+                        int bracketNumCheck = 1;
+                        int j = i+2;
+                        while (bracketNumCheck > 0)
+                        {
+                            if (temp[j].Equals('('))
+                            {
+                                bracketNumCheck++;
+                                rootString += temp[j];
+                            }
+                            else if (temp[j].Equals(')') && bracketNumCheck != 0)
+                            {
+                                bracketNumCheck--;
+                                rootString += temp[j];
+                            }
+                            else {
+                                rootString += temp[j];
+                            }
+                            j++;
+                        }
+                        List<String> postModification = CalStackUse(rootString);
+                        i = j ; // 미리 계산한 갯수만큼 들어갈 수  변경
+                        string result = Math.Sqrt(CalPostModification(postModification)).ToString();
+                        result = '0' + result;
+                        for (int k = i; k<temp.Length; k++)
+                        {
+                            result += temp[k];
+                        }
+                        temp = result;
+                        i = 0;
                         break;
                 }
 
