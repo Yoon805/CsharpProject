@@ -31,6 +31,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.userToggleButton1 = new CalculatorApp.UserControls.UserToggleButton();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.delBtn = new MetroFramework.Controls.MetroButton();
             this.equalBtn = new MetroFramework.Controls.MetroButton();
@@ -65,7 +66,6 @@
             this.logList = new MetroFramework.Controls.MetroListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listClearBtn = new MetroFramework.Controls.MetroButton();
-            this.userToggleButton1 = new CalculatorApp.UserControls.UserToggleButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -98,6 +98,27 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(233, 391);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // userToggleButton1
+            // 
+            this.userToggleButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.userToggleButton1.Checked = true;
+            this.userToggleButton1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.userToggleButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.userToggleButton1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.userToggleButton1.Location = new System.Drawing.Point(199, 2);
+            this.userToggleButton1.Margin = new System.Windows.Forms.Padding(2);
+            this.userToggleButton1.MaximumSize = new System.Drawing.Size(40, 20);
+            this.userToggleButton1.MinimumSize = new System.Drawing.Size(32, 16);
+            this.userToggleButton1.Name = "userToggleButton1";
+            this.userToggleButton1.OffBackColor = System.Drawing.Color.Gray;
+            this.userToggleButton1.OffToggleColor = System.Drawing.Color.Gainsboro;
+            this.userToggleButton1.OnBackColor = System.Drawing.Color.DarkTurquoise;
+            this.userToggleButton1.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            this.userToggleButton1.Size = new System.Drawing.Size(32, 16);
+            this.userToggleButton1.TabIndex = 2;
+            this.userToggleButton1.UseVisualStyleBackColor = true;
+            this.userToggleButton1.CheckedChanged += new System.EventHandler(this.UserToggleButton1_CheckedChanged);
             // 
             // tableLayoutPanel2
             // 
@@ -162,7 +183,7 @@
             this.delBtn.UseCustomBackColor = true;
             this.delBtn.UseSelectable = true;
             this.delBtn.UseStyleColors = true;
-            this.delBtn.Click += new System.EventHandler(this.delBtn_Click);
+            this.delBtn.Click += new System.EventHandler(this.DelBtn_Click);
             // 
             // equalBtn
             // 
@@ -180,8 +201,8 @@
             this.equalBtn.UseCustomBackColor = true;
             this.equalBtn.UseSelectable = true;
             this.equalBtn.UseStyleColors = true;
-            this.equalBtn.Click += new System.EventHandler(this.equalBtn_Click);
-            this.equalBtn.Leave += new System.EventHandler(this.equalBtn_Leave);
+            this.equalBtn.Click += new System.EventHandler(this.EqualBtn_Click);
+            this.equalBtn.Leave += new System.EventHandler(this.EqualBtn_Leave);
             // 
             // dotBtn
             // 
@@ -235,7 +256,7 @@
             this.plusMinusBtn.UseCustomBackColor = true;
             this.plusMinusBtn.UseCustomForeColor = true;
             this.plusMinusBtn.UseSelectable = true;
-            this.plusMinusBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
+            this.plusMinusBtn.Click += new System.EventHandler(this.OpBtnClickEvent);
             // 
             // numBtn1
             // 
@@ -306,7 +327,7 @@
             this.plusBtn.Text = "+";
             this.plusBtn.UseSelectable = true;
             this.plusBtn.UseStyleColors = true;
-            this.plusBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
+            this.plusBtn.Click += new System.EventHandler(this.OpBtnClickEvent);
             // 
             // minusBtn
             // 
@@ -323,7 +344,7 @@
             this.minusBtn.Text = "-";
             this.minusBtn.UseSelectable = true;
             this.minusBtn.UseStyleColors = true;
-            this.minusBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
+            this.minusBtn.Click += new System.EventHandler(this.OpBtnClickEvent);
             // 
             // numBtn6
             // 
@@ -448,7 +469,7 @@
             this.mulBtn.Text = "*";
             this.mulBtn.UseSelectable = true;
             this.mulBtn.UseStyleColors = true;
-            this.mulBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
+            this.mulBtn.Click += new System.EventHandler(this.OpBtnClickEvent);
             // 
             // divBtn
             // 
@@ -465,7 +486,7 @@
             this.divBtn.Text = "/";
             this.divBtn.UseSelectable = true;
             this.divBtn.UseStyleColors = true;
-            this.divBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
+            this.divBtn.Click += new System.EventHandler(this.OpBtnClickEvent);
             // 
             // bracketBtn
             // 
@@ -482,7 +503,7 @@
             this.bracketBtn.Text = "( )";
             this.bracketBtn.UseSelectable = true;
             this.bracketBtn.UseStyleColors = true;
-            this.bracketBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
+            this.bracketBtn.Click += new System.EventHandler(this.OpBtnClickEvent);
             // 
             // clearBtn
             // 
@@ -516,7 +537,7 @@
             this.percentBtn.Text = "%";
             this.percentBtn.UseSelectable = true;
             this.percentBtn.UseStyleColors = true;
-            this.percentBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
+            this.percentBtn.Click += new System.EventHandler(this.OpBtnClickEvent);
             // 
             // rootBtn
             // 
@@ -533,7 +554,7 @@
             this.rootBtn.Text = "√";
             this.rootBtn.UseSelectable = true;
             this.rootBtn.UseStyleColors = true;
-            this.rootBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
+            this.rootBtn.Click += new System.EventHandler(this.OpBtnClickEvent);
             // 
             // inverseBtn
             // 
@@ -550,7 +571,7 @@
             this.inverseBtn.Text = "1/x";
             this.inverseBtn.UseSelectable = true;
             this.inverseBtn.UseStyleColors = true;
-            this.inverseBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
+            this.inverseBtn.Click += new System.EventHandler(this.OpBtnClickEvent);
             // 
             // squaredBtn
             // 
@@ -567,7 +588,7 @@
             this.squaredBtn.Text = "^";
             this.squaredBtn.UseSelectable = true;
             this.squaredBtn.UseStyleColors = true;
-            this.squaredBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
+            this.squaredBtn.Click += new System.EventHandler(this.OpBtnClickEvent);
             // 
             // recentScreen
             // 
@@ -706,27 +727,6 @@
             this.listClearBtn.Text = "기록 지우기";
             this.listClearBtn.UseSelectable = true;
             this.listClearBtn.Click += new System.EventHandler(this.ListClearBtn_Click);
-            // 
-            // userToggleButton1
-            // 
-            this.userToggleButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.userToggleButton1.Checked = true;
-            this.userToggleButton1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.userToggleButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.userToggleButton1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.userToggleButton1.Location = new System.Drawing.Point(199, 2);
-            this.userToggleButton1.Margin = new System.Windows.Forms.Padding(2);
-            this.userToggleButton1.MaximumSize = new System.Drawing.Size(40, 20);
-            this.userToggleButton1.MinimumSize = new System.Drawing.Size(32, 16);
-            this.userToggleButton1.Name = "userToggleButton1";
-            this.userToggleButton1.OffBackColor = System.Drawing.Color.Gray;
-            this.userToggleButton1.OffToggleColor = System.Drawing.Color.Gainsboro;
-            this.userToggleButton1.OnBackColor = System.Drawing.Color.DarkTurquoise;
-            this.userToggleButton1.OnToggleColor = System.Drawing.Color.WhiteSmoke;
-            this.userToggleButton1.Size = new System.Drawing.Size(32, 16);
-            this.userToggleButton1.TabIndex = 2;
-            this.userToggleButton1.UseVisualStyleBackColor = true;
-            this.userToggleButton1.CheckedChanged += new System.EventHandler(this.UserToggleButton1_CheckedChanged);
             // 
             // Form1
             // 

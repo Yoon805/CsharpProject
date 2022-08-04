@@ -18,7 +18,7 @@ namespace CalculatorApp
             recentScreen.Text = "";
         }
 
-        UserFunction userFunc = new UserFunction();
+        CalculateFunc userFunc = new CalculateFunc();
 
         // 계산 기록 열기/닫기
         private void UserToggleButton1_CheckedChanged(object sender, EventArgs e)
@@ -59,7 +59,7 @@ namespace CalculatorApp
         }
 
         // 지우기 버튼 클릭시 한글자 지우기
-        public void delBtn_Click(object sender, EventArgs e)
+        public void DelBtn_Click(object sender, EventArgs e)
         {
             if (resultScreen.Text.Length > 0)
             {
@@ -75,33 +75,34 @@ namespace CalculatorApp
         }
 
         // equalBtn 클릭시 결과 출력
-        public void equalBtn_Click(object sender, EventArgs e)
+        public void EqualBtn_Click(object sender, EventArgs e)
         {
+            ClickFunc clkFunc = new ClickFunc();
             string screenText = resultScreen.Text;
-            if (userFunc.OneMoreCalc) {
-                screenText += userFunc.LastCal;
-                string chCalc = userFunc.BracketInsert(screenText, "cal");
+            string chCalc;
+            if ((screenText.Length != 0) && (userFunc.NumberCheck(screenText, 1) == 0 || userFunc.NumberCheck(screenText, 1) == 4))
+            {   // 저장된 수식을 계산하고 resultScreen에 결과 출력
+                if (userFunc.OneMoreCalc)
+                {
+                    screenText += userFunc.LastCal;
+                    chCalc = clkFunc.BracketInsert(screenText, "cal");
+                }
+                else
+                {
+                    chCalc = clkFunc.BracketInsert(screenText, "cal");
+                    userFunc.SaveLastCalc(chCalc);
+                }
                 List<String> postModification = userFunc.CalStackUse(chCalc);
                 screenText = userFunc.CalPostModification(postModification).ToString();
                 WriteLog(chCalc + " = " + screenText);
                 resultScreen.Text = screenText;
                 recentScreen.Text = chCalc;
+
+                userFunc.OneMoreCalc = true;
+                logList.Columns[logList.Columns.Count - 1].Width = -2;
+                logList.Items[logList.Items.Count - 1].EnsureVisible();
+
             }
-            else
-            {
-                if ((screenText.Length != 0) && (userFunc.NumberCheck(screenText, 1) == 0 || userFunc.NumberCheck(screenText, 1) == 4))
-                { // 저장된 수식을 계산하고 resultScreen에 결과 출력
-                    string chCalc = userFunc.BracketInsert(screenText, "cal");
-                    userFunc.SaveLastCalc(chCalc);
-                    List<String> postModification = userFunc.CalStackUse(chCalc);
-                    screenText = userFunc.CalPostModification(postModification).ToString();
-                    WriteLog(chCalc + " = " + screenText);
-                    resultScreen.Text = screenText;
-                    recentScreen.Text = chCalc;
-                }
-            }
-            userFunc.OneMoreCalc = true;
-            logList.Columns[logList.Columns.Count - 1].Width = -2;
         }
         //숫자 및 dot 버튼 클릭시 Event
         public void NumBtnClickEvent(object sender, EventArgs e)
@@ -136,19 +137,21 @@ namespace CalculatorApp
         }
 
         //수식 기호 버튼 클릭시 Event
-        private void ExpBtnClickEvent(object sender, EventArgs e)
+        private void OpBtnClickEvent(object sender, EventArgs e)
         {
             string inputBtnName = (sender as Button).Name;
-            ClickFnuction clickedAction = new ClickFnuction(inputBtnName, resultScreen.Text);
-            resultScreen.Text = clickedAction.ExpBtnClik();
+            ClickFunc clickedAction = new ClickFunc(inputBtnName, resultScreen.Text);
+            resultScreen.Text = clickedAction.OpBtnClikInsert();
         }
 
         // 결과창 변경시 중간 계산값 recentScreen에 출력
         private void ResultScreen_TextChanged(object sender, EventArgs e) // recentScreen에 실시간 계산 표시
         {
+            ClickFunc clkFunc = new ClickFunc();
+
             if (resultScreen.Text.Length > 0 && (userFunc.NumberCheck(resultScreen.Text, 1) == 0 || userFunc.NumberCheck(resultScreen.Text, 1) == 4))
             {
-                List<String> postModification = userFunc.CalStackUse(userFunc.BracketInsert(resultScreen.Text, "cal"));
+                List<String> postModification = userFunc.CalStackUse(clkFunc.BracketInsert(resultScreen.Text, "cal"));
                 recentScreen.Text = userFunc.CalPostModification(postModification).ToString();
             }
             else
@@ -157,10 +160,23 @@ namespace CalculatorApp
             }
         }
 
-        private void equalBtn_Leave(object sender, EventArgs e)
+        private void EqualBtn_Leave(object sender, EventArgs e)
         {
             userFunc.LastCal = "";
             userFunc.OneMoreCalc = false;
         }
+
+       /* //키패드 입력시 처리
+        private void KeyInput(object sender, KeyEventArgs e)
+        {      //translate key value to char            
+            char keyNo = e.KeyValue.ToString()[(e.KeyValue.ToString().Length - 1)];
+            //Do Something if key event value is numeric            
+            if (char.IsNumber(keyNo))
+            {
+                int keyVal = int.Parse(keyNo.ToString());
+
+                //do logic for numric            
+            }
+        }*/
     }
 }

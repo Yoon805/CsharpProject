@@ -58,7 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClickFnuction.cs" />
+    <Compile Include="ClickFunc.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,7 +75,7 @@
     <Compile Include="UserControls\UserToggleButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UserFunction.cs" />
+    <Compile Include="CalculateFunc.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
