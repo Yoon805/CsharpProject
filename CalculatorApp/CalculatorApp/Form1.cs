@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Windows.Forms;
 
 
@@ -12,6 +13,7 @@ namespace CalculatorApp
         public Form1()
         {
             InitializeComponent();
+
             ClientSize = new System.Drawing.Size(652, 460);
             resultScreen.Text = "";
             recentScreen.Text = "";
@@ -19,67 +21,43 @@ namespace CalculatorApp
 
         UserFunction userFunc = new UserFunction();
 
-        // bracket 알맞게 입력하기
-        public string BracketInsert(string screenText, string nowOrNot)
+        // 계산 기록 열기/닫기
+        private void UserToggleButton1_CheckedChanged(object sender, EventArgs e)
         {
-            int bracketNumCheck = 0;
-            for (int i = 0; i < screenText.Length; i++)
+            if (userToggleButton1.Checked)
             {
-                if (screenText[i].Equals('('))
-                {
-                    bracketNumCheck++;
-                }
-                else if (screenText[i].Equals(')') && bracketNumCheck != 0)
-                {
-                    bracketNumCheck--;
-                }
+                splitContainer1.SplitterDistance = ClientSize.Width / 2;
             }
-            if (nowOrNot.Equals("cal"))//중간계산시
+            else
             {
-                string midResult = screenText;
-                for (int i = 0; i < bracketNumCheck; i++)
-                {
-                    midResult += ')';
-                }
-                return midResult;
+                splitContainer1.SplitterDistance = ClientSize.Width;
             }
-            else//값 입력시
-            {
-                if (screenText.Length == 0)
-                {
-                    screenText += "(";
-                }
-                else if (!(userFunc.NumberCheck(screenText, 1) == 3) && bracketNumCheck != 0)
-                {
-                    screenText += ")";
-                }
-                else if ((userFunc.NumberCheck(screenText, 1) == 4 && bracketNumCheck == 0) || userFunc.NumberCheck(screenText, 1) == 0)
-                {
-                    screenText += "*(";
-                }
-                else
-                {
-                    screenText += "(";
-                }
-            }
-            return screenText;
         }
 
-        //로그 남기기
+        //계산 기록 로그 남기기
         public void WriteLog(string screen1)
         {
             logList.Items.Add(screen1);
+        }
+
+        // 계산 기록 초기화
+        private void ListClearBtn_Click(object sender, EventArgs e)
+        {
+            logList.Clear();
+            ColumnHeader columnHeader1 = new ColumnHeader();
+            logList.Columns.Add(columnHeader1);
         }
 
         //숫자 및 dot 버튼 클릭시 Event
         public void NumBtnClickEvent(object sender, EventArgs e)
         {
             string inputText = (sender as Button).Text;
+
             if (inputText == dotBtn.Text)
             {
                 char[] splitStr = { '+', '－', '*', '/', '^' };
                 string[] tempString = resultScreen.Text.Split(splitStr);
-                if (tempString[tempString.Length - 1].Contains(dotBtn.Text))//이미 이전 값에 dot이 들어갔다면 안들어감
+                if (tempString[tempString.Length - 1].Contains(dotBtn.Text))// 이전 값에 dot이 들어갔다면 안들어감
                 {
                     return;
                 }
@@ -101,10 +79,11 @@ namespace CalculatorApp
             }
 
         }
-        //수식 버튼 클릭시 Event
+
+        //수식 기호 버튼 클릭시 Event
         private void ExpBtnClickEvent(object sender, EventArgs e)
         {
-            // 수식 버튼들 입력시 resultScreen에 현재식 내용 보여주고
+            // 수식 기호 버튼들 입력시 resultScreen에 현재식 내용 보여주고
             // 최근수식 및 결과 recentScreen에 보여주기
 
             string inputText = (sender as Button).Text;
@@ -112,7 +91,7 @@ namespace CalculatorApp
             if (inputText == bracketBtn.Text)
             {
                 // 수식 확인해서 괄호 추가
-                resultScreen.Text = BracketInsert(resultScreen.Text, "");
+                resultScreen.Text = userFunc.BracketInsert(resultScreen.Text, "");
             }
             else if (inputText == inverseBtn.Text)
             {
@@ -166,7 +145,7 @@ namespace CalculatorApp
             {
                 if (userFunc.NumberCheck(resultScreen.Text, 1) == 0 || userFunc.NumberCheck(resultScreen.Text, 1) == 4)
                 { // 저장된 수식을 계산하고 resultScreen에 결과 출력
-                    string chCalc = BracketInsert(resultScreen.Text, "cal");
+                    string chCalc = userFunc.BracketInsert(resultScreen.Text, "cal");
                     List<String> postModification = userFunc.CalStackUse(chCalc);
                     resultScreen.Text = userFunc.CalPostModification(postModification).ToString();
                     WriteLog(chCalc + " = " + resultScreen.Text);
@@ -212,6 +191,51 @@ namespace CalculatorApp
                     resultScreen.Text += inputText;
                 }
             }
+            else if (inputText == plusMinusBtn.Text)
+            {
+                StringBuilder userInput = new StringBuilder(resultScreen.Text);
+
+                if (userFunc.NumberCheck(resultScreen.Text, 1) == 0)
+                {
+
+                    int numLoc = 0;
+                    bool onlyNum = true;
+                    for (int i = 1; i < resultScreen.Text.Length+1; i++)
+                    {
+                        if (!onlyNum) { break; }
+                        switch (userFunc.NumberCheck(resultScreen.Text, i))
+                        {
+                            case 0:
+                            case 1:
+                                continue;
+                            case 2:
+                            case 3:
+                            case 4:
+                            case 5:
+                            case 6:
+                            case 7:
+                                onlyNum = false;
+                                numLoc = i;
+                                break;
+                        }
+                    }
+                    numLoc = resultScreen.Text.Length - numLoc;
+                    if (onlyNum)
+                    {
+                        userInput.Insert(0, "(-");
+                    }
+                    else if (userInput[numLoc].Equals('('))
+                    {
+                        userInput.Insert(numLoc+1, '-');
+                    }
+                    else if (userInput[numLoc].Equals('-'))
+                    {
+                        userInput.Remove(numLoc-1, 2);
+                    }
+                    else { userInput.Insert(numLoc+1, "(-"); }
+                }
+                resultScreen.Text = userInput.ToString();
+            }
             else
             {
                 if (userFunc.NumberCheck(resultScreen.Text, 1) == 0 || userFunc.NumberCheck(resultScreen.Text, 1) == 4)//숫자,닫힌괄호 뒤로 올시 입력
@@ -221,32 +245,12 @@ namespace CalculatorApp
             }
         }
 
-        private void UserToggleButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-            if (userToggleButton1.Checked)
-            {
-
-                ClientSize = new System.Drawing.Size(652, 460);
-                splitContainer1.SplitterDistance = 326;
-
-            }
-
-            else
-            {
-                ClientSize = new System.Drawing.Size(335, 460);
-                splitContainer1.SplitterDistance = 335;
-            }
-        }
-
-
-
-
+        // 결과창 변경시 중간 계산값 recentScreen에 출력
         private void ResultScreen_TextChanged(object sender, EventArgs e) // recentScreen에 실시간 계산 표시
         {
             if (resultScreen.Text.Length > 0 && (userFunc.NumberCheck(resultScreen.Text, 1) == 0 || userFunc.NumberCheck(resultScreen.Text, 1) == 4))
             {
-                List<String> postModification = userFunc.CalStackUse(BracketInsert(resultScreen.Text, "cal"));
+                List<String> postModification = userFunc.CalStackUse(userFunc.BracketInsert(resultScreen.Text, "cal"));
                 recentScreen.Text = userFunc.CalPostModification(postModification).ToString();
             }
             else
@@ -255,11 +259,6 @@ namespace CalculatorApp
             }
         }
 
-        private void ListClearBtn_Click(object sender, EventArgs e)
-        {
-            logList.Clear();
-            ColumnHeader columnHeader1 = new ColumnHeader();
-            logList.Columns.Add(columnHeader1);
-        }
+
     }
 }

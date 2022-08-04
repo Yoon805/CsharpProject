@@ -1,9 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
+
 
 namespace CalculatorApp
 {
-    internal class UserFunction
+    /*class calcText {
+        private StringBuilder userInput = new StringBuilder();
+
+        public StringBuilder UserInput { get => userInput; set => userInput = value; }
+    }*/
+
+    internal class UserFunction //수식 계산용 함수들
     {
         public List<String> CalStackUse(string temp)//후위표기법으로 변환
         {
@@ -184,8 +192,8 @@ namespace CalculatorApp
             return numberStack.Pop();
         }
 
-        // 뒤에서 n번째로 입력한 숫자 체크
-        public int NumberCheck(string screenText, int number)
+        
+        public int NumberCheck(string screenText, int number)// 뒤에서 n번째로 입력한 숫자 체크
         {
             switch (screenText[screenText.Length - number])
             {
@@ -202,7 +210,7 @@ namespace CalculatorApp
                     return 0;
                 case '.':
                     return 1;
-                case '-'://숫자로 받을 값들
+                case '-'://숫자로 받을 값들 0~9, . , -
                     return 2;
                 case '(':
                     return 3;
@@ -216,7 +224,51 @@ namespace CalculatorApp
                     return 6;
             }
         }
+
+
+        public string BracketInsert(string screenText, string nowOrNot)// bracket 알맞게 입력하기
+        {
+            int bracketNumCheck = 0;
+            for (int i = 0; i < screenText.Length; i++)
+            {
+                if (screenText[i].Equals('('))
+                {
+                    bracketNumCheck++;
+                }
+                else if (screenText[i].Equals(')') && bracketNumCheck != 0)
+                {
+                    bracketNumCheck--;
+                }
+            }
+            if (nowOrNot.Equals("cal"))//중간계산시
+            {
+                string midResult = screenText;
+                for (int i = 0; i < bracketNumCheck; i++)
+                {
+                    midResult += ')';
+                }
+                return midResult;
+            }
+            else//값 입력시
+            {
+                if (screenText.Length == 0)
+                {
+                    screenText += "(";
+                }
+                else if (!(NumberCheck(screenText, 1) == 3) && bracketNumCheck != 0)
+                {
+                    screenText += ")";
+                }
+                else if ((NumberCheck(screenText, 1) == 4 && bracketNumCheck == 0) || NumberCheck(screenText, 1) == 0)
+                {
+                    screenText += "*(";
+                }
+                else
+                {
+                    screenText += "(";
+                }
+            }
+            return screenText;
+        }
     }
-
-
 }
