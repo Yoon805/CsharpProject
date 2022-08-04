@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 
 namespace CalculatorApp
 {
-    /*class calcText {
-        private StringBuilder userInput = new StringBuilder();
-
-        public StringBuilder UserInput { get => userInput; set => userInput = value; }
-    }*/
-
     internal class UserFunction //수식 계산용 함수들
     {
+        string lastCal = "";
+        Boolean oneMoreCalc = false;
+
+        public string LastCal { get => lastCal; set => lastCal = value; }
+        public bool OneMoreCalc { get => oneMoreCalc; set => oneMoreCalc = value; }
+
         public List<String> CalStackUse(string temp)//후위표기법으로 변환
         {
             String numbersSaveTemp = "";//숫자 임시 저장
@@ -192,7 +191,6 @@ namespace CalculatorApp
             return numberStack.Pop();
         }
 
-        
         public int NumberCheck(string screenText, int number)// 뒤에서 n번째로 입력한 숫자 체크
         {
             switch (screenText[screenText.Length - number])
@@ -220,6 +218,8 @@ namespace CalculatorApp
                     return 5;
                 case '√':
                     return 7;
+                case '^':
+                    return 8;
                 default:// 연산자
                     return 6;
             }
@@ -255,20 +255,93 @@ namespace CalculatorApp
                 {
                     screenText += "(";
                 }
-                else if (!(NumberCheck(screenText, 1) == 3) && bracketNumCheck != 0)
-                {
-                    screenText += ")";
-                }
-                else if ((NumberCheck(screenText, 1) == 4 && bracketNumCheck == 0) || NumberCheck(screenText, 1) == 0)
-                {
-                    screenText += "*(";
-                }
                 else
                 {
-                    screenText += "(";
+                    if (bracketNumCheck == 0)
+                    {
+                        switch (NumberCheck(screenText, 1))
+                        {
+                            case 0:
+                            case 4:
+                                screenText += "*(";
+                                break;
+                            case 1:
+                            case 2:
+                                break;
+                            case 3:
+                            case 5:
+                            case 6:
+                            case 7:
+                            case 8:
+                                screenText += "(";
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (NumberCheck(screenText, 1))
+                        {
+                            case 0:
+                            case 4:
+                                screenText += ")";
+                                break;
+                            case 1:
+                            case 2:
+                                break;
+                            case 3:
+                            case 5:
+                            case 6:
+                            case 7:
+                            case 8:
+                                screenText += "(";
+                                break;
+                            default:
+                                break;
+                        }
+                    }
                 }
             }
             return screenText;
         }
+
+        public void SaveLastCalc(string screenText)
+        {
+            int bracketNumCheck = 0;
+            bool findExp = false;
+            for (int i = 1; i < screenText.Length; i++)
+            {
+                if (findExp && bracketNumCheck == 0) { break; };
+                findExp = false;
+                switch (NumberCheck(screenText, i))
+                {
+                    case 3://(
+                        lastCal = screenText[screenText.Length - i] + lastCal;
+                        bracketNumCheck--;
+                        break;
+                    case 4://):
+                        lastCal = screenText[screenText.Length - i] + lastCal;
+                        bracketNumCheck++;
+                        break;
+                    case 5://연산자 -
+                    case 6://연산자
+                        lastCal = screenText[screenText.Length - i] + lastCal;
+                        findExp = true;
+                        break;
+                    case 7://루트
+                    case 8://제곱^
+                    case 0://숫자
+                    case 1://.
+                    case 2://음수
+                        lastCal = screenText[screenText.Length - i] + lastCal;
+                        break;
+                    default:
+                        Console.WriteLine("Error occured");
+                        break;
+                }
+            }
+        }
+
     }
 }

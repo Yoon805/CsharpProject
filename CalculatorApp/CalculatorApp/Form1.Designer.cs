@@ -162,7 +162,7 @@
             this.delBtn.UseCustomBackColor = true;
             this.delBtn.UseSelectable = true;
             this.delBtn.UseStyleColors = true;
-            this.delBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
+            this.delBtn.Click += new System.EventHandler(this.delBtn_Click);
             // 
             // equalBtn
             // 
@@ -180,7 +180,8 @@
             this.equalBtn.UseCustomBackColor = true;
             this.equalBtn.UseSelectable = true;
             this.equalBtn.UseStyleColors = true;
-            this.equalBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
+            this.equalBtn.Click += new System.EventHandler(this.equalBtn_Click);
+            this.equalBtn.Leave += new System.EventHandler(this.equalBtn_Leave);
             // 
             // dotBtn
             // 
@@ -498,7 +499,7 @@
             this.clearBtn.Text = "C";
             this.clearBtn.UseSelectable = true;
             this.clearBtn.UseStyleColors = true;
-            this.clearBtn.Click += new System.EventHandler(this.ExpBtnClickEvent);
+            this.clearBtn.Click += new System.EventHandler(this.ClearBtn_Click);
             // 
             // percentBtn
             // 
@@ -715,6 +716,7 @@
             this.userToggleButton1.Dock = System.Windows.Forms.DockStyle.Right;
             this.userToggleButton1.Location = new System.Drawing.Point(199, 2);
             this.userToggleButton1.Margin = new System.Windows.Forms.Padding(2);
+            this.userToggleButton1.MaximumSize = new System.Drawing.Size(40, 20);
             this.userToggleButton1.MinimumSize = new System.Drawing.Size(32, 16);
             this.userToggleButton1.Name = "userToggleButton1";
             this.userToggleButton1.OffBackColor = System.Drawing.Color.Gray;
