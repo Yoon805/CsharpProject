@@ -165,6 +165,7 @@ namespace CalculatorApp
             {
                 try
                 {
+                    userFunc.DivideByZero = false;
                     List<String> postModification = userFunc.CalStackUse(clkFunc.BracketInsert(resultScreen.Text, "cal"));
                     string resultText = userFunc.CalPostModification(postModification);
                     if (userFunc.DivideByZero)

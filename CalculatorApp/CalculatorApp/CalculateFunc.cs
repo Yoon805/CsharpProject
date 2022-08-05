@@ -191,7 +191,6 @@ namespace CalculatorApp
                             num2 = numberStack.Pop();
 
                             if (num1 == 0) { divideByZero = true; }
-                            else { divideByZero = false;};
 
                             result = 1 / num1 * num2;
                             numberStack.Push(result);

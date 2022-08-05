@@ -29,6 +29,8 @@ C:\Users\dyyoon\Desktop\Csharp\새 폴더\CsharpProject\CalculatorApp\Calculator
 C:\Users\dyyoon\Desktop\Csharp\새 폴더\CsharpProject\CalculatorApp\CalculatorApp\obj\Debug\CalculatorApp.exe
 C:\Users\dyyoon\Desktop\Csharp\새 폴더\CsharpProject\CalculatorApp\CalculatorApp\obj\Debug\CalculatorApp.pdb
 C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\bin\Debug\CalculatorApp.exe.config
+C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\bin\Debug\CalculatorApp.exe.manifest
+C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\bin\Debug\CalculatorApp.application
 C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\bin\Debug\CalculatorApp.exe
 C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\bin\Debug\CalculatorApp.pdb
 C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\bin\Debug\MetroFramework.Design.dll
@@ -40,6 +42,8 @@ C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\obj\Deb
 C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\obj\Debug\CalculatorApp.Properties.Resources.resources
 C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\obj\Debug\CalculatorApp.csproj.GenerateResource.cache
 C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\obj\Debug\CalculatorApp.csproj.CoreCompileInputs.cache
+C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\obj\Debug\CalculatorApp.exe.manifest
+C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\obj\Debug\CalculatorApp.application
 C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\obj\Debug\CalculatorApp.csproj.CopyComplete
 C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\obj\Debug\CalculatorApp.exe
 C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\obj\Debug\CalculatorApp.pdb
