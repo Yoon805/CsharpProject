@@ -6,11 +6,13 @@ namespace CalculatorApp
 {
     internal class CalculateFunc //수식 계산용 함수들
     {
+        Boolean divideByZero = false;
         string lastCal = "";
         Boolean oneMoreCalc = false;
 
         public string LastCal { get => lastCal; set => lastCal = value; }
         public bool OneMoreCalc { get => oneMoreCalc; set => oneMoreCalc = value; }
+        public bool DivideByZero { get => divideByZero; set => divideByZero = value; }
 
         public List<String> CalStackUse(string temp)//후위표기법으로 변환
         {
@@ -110,7 +112,8 @@ namespace CalculatorApp
                         }
                         List<String> postModification = CalStackUse(rootString);
                         i = j; // 미리 계산한 갯수만큼 들어갈 수  변경
-                        string result = Math.Sqrt(CalPostModification(postModification)).ToString("F3");
+                        string result = CalPostModification(postModification);
+                        result = Math.Sqrt(Double.Parse(result)).ToString();
                         for (int k = i; k < temp.Length; k++)
                         {
                             result += temp[k];
@@ -139,6 +142,11 @@ namespace CalculatorApp
                         temp = exponentString; // 구한 값을 맨 앞으로 넣어서 다시 for문 반복
                         i = -1; // 바로 다음 시도에서 i++이 실행되므로 -1부터 시작
                         break;
+                    default:
+                        numbersSaveTemp += temp[i].ToString();
+                        Console.WriteLine("Unown Value Occured");
+                        Console.WriteLine(temp[i].ToString());
+                        break;
                 }
 
             }
@@ -154,41 +162,58 @@ namespace CalculatorApp
             return mathList; // 저장된 후위수식 return
         }
 
-        public double CalPostModification(List<String> PostMod)//후위수식을 받아 계산하기
+        public string CalPostModification(List<String> PostMod)//후위수식을 받아 계산하기
         {
             Stack<double> numberStack = new Stack<double>();//숫자 임시 저장, 소수계산을 위해 double로 치환 저장
             double result;
-            for (int i = 0; i < PostMod.Count; i++)
+            double num1;
+            double num2;
+            try
             {
-                switch (PostMod[i])
+                for (int i = 0; i < PostMod.Count; i++)
                 {
-                    case "+":
-                        result = numberStack.Pop() + numberStack.Pop();
-                        numberStack.Push(result);
-                        break;
-                    case "－":
-                        result = 0 - numberStack.Pop() + numberStack.Pop();
-                        numberStack.Push(result);
-                        break;
-                    case "*":
-                        result = numberStack.Pop() * numberStack.Pop();
-                        numberStack.Push(result);
-                        break;
-                    case "/":
-                        result = 1 / numberStack.Pop() * numberStack.Pop();
-                        numberStack.Push(result);
-                        break;
-                    case "^":
-                        double num1 = numberStack.Pop();
-                        result = Math.Pow(numberStack.Pop(), num1);
-                        numberStack.Push(result);
-                        break;
-                    default: //숫자일시 저장
-                        numberStack.Push(Double.Parse(PostMod[i]));
-                        break;
+                    switch (PostMod[i])
+                    {
+                        case "+":
+                            result = numberStack.Pop() + numberStack.Pop();
+                            numberStack.Push(result);
+                            break;
+                        case "－":
+                            result = 0 - numberStack.Pop() + numberStack.Pop();
+                            numberStack.Push(result);
+                            break;
+                        case "*":
+                            result = numberStack.Pop() * numberStack.Pop();
+                            numberStack.Push(result);
+                            break;
+                        case "/":
+                            num1 = numberStack.Pop();
+                            num2 = numberStack.Pop();
+
+                            if (num1 == 0) { divideByZero = true; }
+                            else { divideByZero = false;};
+
+                            result = 1 / num1 * num2;
+                            numberStack.Push(result);
+                            break;
+                        case "^":
+                            num1 = numberStack.Pop();
+                            result = Math.Pow(numberStack.Pop(), num1);
+                            numberStack.Push(result);
+                            break;
+                        default: //숫자일시 저장
+                            numberStack.Push(Double.Parse(PostMod[i]));
+                            break;
+                    }
                 }
+                return numberStack.Pop().ToString();
             }
-            return numberStack.Pop();
+            catch (Exception e)
+            {
+                Console.WriteLine("=====ErrorOccured_CPM=====");
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         public int NumberCheck(string screenText, int number)// 뒤에서 n번째로 입력한 숫자 체크

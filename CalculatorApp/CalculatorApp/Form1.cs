@@ -77,6 +77,12 @@ namespace CalculatorApp
         // equalBtn 클릭시 결과 출력
         public void EqualBtn_Click(object sender, EventArgs e)
         {
+            if (recentScreen.Text.Equals("∞") || recentScreen.Text.Equals("-∞") || recentScreen.Text.Equals("") || recentScreen.Text.Equals("NaN"))
+            {
+                MessageBox.Show("수식에 오류가 있습니다.", "알림");
+                return;
+            }
+
             ClickFunc clkFunc = new ClickFunc();
             string screenText = resultScreen.Text;
             string chCalc;
@@ -95,6 +101,12 @@ namespace CalculatorApp
                 List<String> postModification = userFunc.CalStackUse(chCalc);
                 screenText = userFunc.CalPostModification(postModification).ToString();
                 WriteLog(chCalc + " = " + screenText);
+
+                if (screenText.Contains("E"))
+                {
+                    screenText = "(" + screenText + ")";
+                };
+
                 resultScreen.Text = screenText;
                 recentScreen.Text = chCalc;
 
@@ -119,18 +131,18 @@ namespace CalculatorApp
                 }
                 else
                 {
-                    resultScreen.Text += inputText;
+                    resultScreen.AppendText( inputText);
                 };
             }
             else
             {
                 if (resultScreen.Text.Length > 0 && userFunc.NumberCheck(resultScreen.Text, 1) == 4) //닫힌 괄호 다음에 입력할 시
                 {
-                    resultScreen.Text += "*" + inputText;
+                    resultScreen.AppendText("*" + inputText);
                 }
                 else
                 {
-                    resultScreen.Text += inputText;
+                    resultScreen.AppendText(inputText);
                 }
             }
 
@@ -151,8 +163,25 @@ namespace CalculatorApp
 
             if (resultScreen.Text.Length > 0 && (userFunc.NumberCheck(resultScreen.Text, 1) == 0 || userFunc.NumberCheck(resultScreen.Text, 1) == 4))
             {
-                List<String> postModification = userFunc.CalStackUse(clkFunc.BracketInsert(resultScreen.Text, "cal"));
-                recentScreen.Text = userFunc.CalPostModification(postModification).ToString();
+                try
+                {
+                    List<String> postModification = userFunc.CalStackUse(clkFunc.BracketInsert(resultScreen.Text, "cal"));
+                    string resultText = userFunc.CalPostModification(postModification);
+                    if (userFunc.DivideByZero)
+                    {
+                        MessageBox.Show("0으로 나눌 수 없습니다.", "ERROR");
+                        return;
+                    }
+                    recentScreen.Text = resultText;
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("=====ErrorOccured_RST=====");
+                    Console.WriteLine(ex);
+                    MessageBox.Show("수식에 오류가 있습니다.", "ERROR");
+                    delBtn.PerformClick();
+                }
             }
             else
             {
@@ -166,17 +195,18 @@ namespace CalculatorApp
             userFunc.OneMoreCalc = false;
         }
 
-       /* //키패드 입력시 처리
-        private void KeyInput(object sender, KeyEventArgs e)
-        {      //translate key value to char            
-            char keyNo = e.KeyValue.ToString()[(e.KeyValue.ToString().Length - 1)];
-            //Do Something if key event value is numeric            
-            if (char.IsNumber(keyNo))
-            {
-                int keyVal = int.Parse(keyNo.ToString());
 
-                //do logic for numric            
-            }
-        }*/
+        /* //키패드 입력시 처리
+         private void KeyInput(object sender, KeyEventArgs e)
+         {      //translate key value to char            
+             char keyNo = e.KeyValue.ToString()[(e.KeyValue.ToString().Length - 1)];
+             //Do Something if key event value is numeric            
+             if (char.IsNumber(keyNo))
+             {
+                 int keyVal = int.Parse(keyNo.ToString());
+
+                 //do logic for numric            
+             }
+         }*/
     }
 }

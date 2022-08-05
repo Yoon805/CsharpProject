@@ -27,7 +27,7 @@ namespace CalculatorApp
             // 최근수식 및 결과 recentScreen에 보여주기
             if (this.resultToScreen.Length == 0)
             {
-                if (this.inputBtnName == "( )")
+                if (this.inputBtnName == "bracketBtn")
                 {
                     // 수식 확인해서 괄호 추가
                     this.resultToScreen = BracketInsert(this.resultToScreen, "");
@@ -50,7 +50,7 @@ namespace CalculatorApp
                         }
                         else if (numCheck == 0 || numCheck == 4)
                         {
-                            this.resultToScreen += "*1/100";
+                            this.resultToScreen += "*(1/100)";
                         }
                         break;
                     case ("bracketBtn"):
@@ -80,6 +80,10 @@ namespace CalculatorApp
                         }
                         break;
                     case ("minusBtn"):
+                        if (this.resultToScreen.Length > 1 && NumberCheck(this.resultToScreen, 2) == 7)
+                        {
+                            break;
+                        }
                         if (numCheck == 0 || numCheck == 4)
                         {
                             this.resultToScreen += "－";//계산용 수식 
@@ -153,7 +157,6 @@ namespace CalculatorApp
         }
         public string BracketInsert(string screenText, string nowOrNot)// bracket 알맞게 입력하기
         {
-            CalculateFunc userFunc = new CalculateFunc();
 
             int bracketNumCheck = 0;
             for (int i = 0; i < screenText.Length; i++)

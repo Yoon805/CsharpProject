@@ -31,7 +31,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.userToggleButton1 = new CalculatorApp.UserControls.UserToggleButton();
+            this.recentScreen = new MetroFramework.Controls.MetroTextBox();
+            this.resultScreen = new MetroFramework.Controls.MetroTextBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.delBtn = new MetroFramework.Controls.MetroButton();
             this.equalBtn = new MetroFramework.Controls.MetroButton();
@@ -57,8 +58,6 @@
             this.rootBtn = new MetroFramework.Controls.MetroButton();
             this.inverseBtn = new MetroFramework.Controls.MetroButton();
             this.squaredBtn = new MetroFramework.Controls.MetroButton();
-            this.recentScreen = new MetroFramework.Controls.MetroTile();
-            this.resultScreen = new MetroFramework.Controls.MetroTile();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
@@ -66,6 +65,7 @@
             this.logList = new MetroFramework.Controls.MetroListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listClearBtn = new MetroFramework.Controls.MetroButton();
+            this.userToggleButton1 = new CalculatorApp.UserControls.UserToggleButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -82,10 +82,10 @@
             this.tableLayoutPanel1.AutoSize = true;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.userToggleButton1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.recentScreen, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.resultScreen, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.userToggleButton1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -96,29 +96,89 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(233, 391);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(311, 391);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // userToggleButton1
+            // recentScreen
             // 
-            this.userToggleButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.userToggleButton1.Checked = true;
-            this.userToggleButton1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.userToggleButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.userToggleButton1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.userToggleButton1.Location = new System.Drawing.Point(199, 2);
-            this.userToggleButton1.Margin = new System.Windows.Forms.Padding(2);
-            this.userToggleButton1.MaximumSize = new System.Drawing.Size(40, 20);
-            this.userToggleButton1.MinimumSize = new System.Drawing.Size(32, 16);
-            this.userToggleButton1.Name = "userToggleButton1";
-            this.userToggleButton1.OffBackColor = System.Drawing.Color.Gray;
-            this.userToggleButton1.OffToggleColor = System.Drawing.Color.Gainsboro;
-            this.userToggleButton1.OnBackColor = System.Drawing.Color.DarkTurquoise;
-            this.userToggleButton1.OnToggleColor = System.Drawing.Color.WhiteSmoke;
-            this.userToggleButton1.Size = new System.Drawing.Size(32, 16);
-            this.userToggleButton1.TabIndex = 2;
-            this.userToggleButton1.UseVisualStyleBackColor = true;
-            this.userToggleButton1.CheckedChanged += new System.EventHandler(this.UserToggleButton1_CheckedChanged);
+            // 
+            // 
+            // 
+            this.recentScreen.CustomButton.Image = null;
+            this.recentScreen.CustomButton.Location = new System.Drawing.Point(255, 2);
+            this.recentScreen.CustomButton.Name = "";
+            this.recentScreen.CustomButton.Size = new System.Drawing.Size(47, 47);
+            this.recentScreen.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.recentScreen.CustomButton.TabIndex = 1;
+            this.recentScreen.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.recentScreen.CustomButton.UseSelectable = true;
+            this.recentScreen.CustomButton.Visible = false;
+            this.recentScreen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.recentScreen.FontSize = MetroFramework.MetroTextBoxSize.Tall;
+            this.recentScreen.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.recentScreen.Lines = new string[] {
+        "RecentScreen"};
+            this.recentScreen.Location = new System.Drawing.Point(3, 100);
+            this.recentScreen.MaxLength = 32767;
+            this.recentScreen.Multiline = true;
+            this.recentScreen.Name = "recentScreen";
+            this.recentScreen.PasswordChar = '\0';
+            this.recentScreen.ReadOnly = true;
+            this.recentScreen.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.recentScreen.SelectedText = "";
+            this.recentScreen.SelectionLength = 0;
+            this.recentScreen.SelectionStart = 0;
+            this.recentScreen.ShortcutsEnabled = true;
+            this.recentScreen.Size = new System.Drawing.Size(305, 52);
+            this.recentScreen.TabIndex = 3;
+            this.recentScreen.Text = "RecentScreen";
+            this.recentScreen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.recentScreen.UseCustomForeColor = true;
+            this.recentScreen.UseSelectable = true;
+            this.recentScreen.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.recentScreen.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            // 
+            // resultScreen
+            // 
+            this.resultScreen.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.resultScreen.CustomButton.Image = null;
+            this.resultScreen.CustomButton.Location = new System.Drawing.Point(235, 2);
+            this.resultScreen.CustomButton.Name = "";
+            this.resultScreen.CustomButton.Size = new System.Drawing.Size(67, 67);
+            this.resultScreen.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.resultScreen.CustomButton.TabIndex = 1;
+            this.resultScreen.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.resultScreen.CustomButton.UseSelectable = true;
+            this.resultScreen.CustomButton.Visible = false;
+            this.resultScreen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.resultScreen.FontSize = MetroFramework.MetroTextBoxSize.Tall;
+            this.resultScreen.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.resultScreen.Lines = new string[] {
+        "ResultScreen"};
+            this.resultScreen.Location = new System.Drawing.Point(3, 22);
+            this.resultScreen.MaxLength = 32767;
+            this.resultScreen.Multiline = true;
+            this.resultScreen.Name = "resultScreen";
+            this.resultScreen.PasswordChar = '\0';
+            this.resultScreen.ReadOnly = true;
+            this.resultScreen.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.resultScreen.SelectedText = "";
+            this.resultScreen.SelectionLength = 0;
+            this.resultScreen.SelectionStart = 0;
+            this.resultScreen.ShortcutsEnabled = true;
+            this.resultScreen.Size = new System.Drawing.Size(305, 72);
+            this.resultScreen.TabIndex = 2;
+            this.resultScreen.Text = "ResultScreen";
+            this.resultScreen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.resultScreen.UseCustomBackColor = true;
+            this.resultScreen.UseCustomForeColor = true;
+            this.resultScreen.UseSelectable = true;
+            this.resultScreen.WaterMarkColor = System.Drawing.SystemColors.ControlText;
+            this.resultScreen.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.resultScreen.TextChanged += new System.EventHandler(this.ResultScreen_TextChanged);
             // 
             // tableLayoutPanel2
             // 
@@ -163,7 +223,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(227, 230);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(305, 230);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // delBtn
@@ -174,9 +234,9 @@
             this.delBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.delBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.delBtn.ForeColor = System.Drawing.Color.Black;
-            this.delBtn.Location = new System.Drawing.Point(171, 3);
+            this.delBtn.Location = new System.Drawing.Point(231, 3);
             this.delBtn.Name = "delBtn";
-            this.delBtn.Size = new System.Drawing.Size(53, 32);
+            this.delBtn.Size = new System.Drawing.Size(71, 32);
             this.delBtn.Style = MetroFramework.MetroColorStyle.Orange;
             this.delBtn.TabIndex = 0;
             this.delBtn.Text = "←";
@@ -192,9 +252,9 @@
             this.equalBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.equalBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.equalBtn.ForeColor = System.Drawing.Color.Black;
-            this.equalBtn.Location = new System.Drawing.Point(171, 193);
+            this.equalBtn.Location = new System.Drawing.Point(231, 193);
             this.equalBtn.Name = "equalBtn";
-            this.equalBtn.Size = new System.Drawing.Size(53, 34);
+            this.equalBtn.Size = new System.Drawing.Size(71, 34);
             this.equalBtn.Style = MetroFramework.MetroColorStyle.Orange;
             this.equalBtn.TabIndex = 0;
             this.equalBtn.Text = "＝";
@@ -212,9 +272,9 @@
             this.dotBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.dotBtn.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.dotBtn.ForeColor = System.Drawing.Color.Black;
-            this.dotBtn.Location = new System.Drawing.Point(115, 193);
+            this.dotBtn.Location = new System.Drawing.Point(155, 193);
             this.dotBtn.Name = "dotBtn";
-            this.dotBtn.Size = new System.Drawing.Size(50, 34);
+            this.dotBtn.Size = new System.Drawing.Size(70, 34);
             this.dotBtn.TabIndex = 0;
             this.dotBtn.Text = ".";
             this.dotBtn.UseCustomBackColor = true;
@@ -230,9 +290,9 @@
             this.numBtn0.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.numBtn0.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.numBtn0.ForeColor = System.Drawing.Color.Black;
-            this.numBtn0.Location = new System.Drawing.Point(59, 193);
+            this.numBtn0.Location = new System.Drawing.Point(79, 193);
             this.numBtn0.Name = "numBtn0";
-            this.numBtn0.Size = new System.Drawing.Size(50, 34);
+            this.numBtn0.Size = new System.Drawing.Size(70, 34);
             this.numBtn0.TabIndex = 0;
             this.numBtn0.Text = "0";
             this.numBtn0.UseCustomBackColor = true;
@@ -250,7 +310,7 @@
             this.plusMinusBtn.ForeColor = System.Drawing.Color.Black;
             this.plusMinusBtn.Location = new System.Drawing.Point(3, 193);
             this.plusMinusBtn.Name = "plusMinusBtn";
-            this.plusMinusBtn.Size = new System.Drawing.Size(50, 34);
+            this.plusMinusBtn.Size = new System.Drawing.Size(70, 34);
             this.plusMinusBtn.TabIndex = 0;
             this.plusMinusBtn.Text = "±";
             this.plusMinusBtn.UseCustomBackColor = true;
@@ -268,7 +328,7 @@
             this.numBtn1.ForeColor = System.Drawing.Color.Black;
             this.numBtn1.Location = new System.Drawing.Point(3, 155);
             this.numBtn1.Name = "numBtn1";
-            this.numBtn1.Size = new System.Drawing.Size(50, 32);
+            this.numBtn1.Size = new System.Drawing.Size(70, 32);
             this.numBtn1.TabIndex = 0;
             this.numBtn1.Text = "1";
             this.numBtn1.UseCustomBackColor = true;
@@ -284,9 +344,9 @@
             this.numBtn2.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.numBtn2.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.numBtn2.ForeColor = System.Drawing.Color.Black;
-            this.numBtn2.Location = new System.Drawing.Point(59, 155);
+            this.numBtn2.Location = new System.Drawing.Point(79, 155);
             this.numBtn2.Name = "numBtn2";
-            this.numBtn2.Size = new System.Drawing.Size(50, 32);
+            this.numBtn2.Size = new System.Drawing.Size(70, 32);
             this.numBtn2.TabIndex = 0;
             this.numBtn2.Text = "2";
             this.numBtn2.UseCustomBackColor = true;
@@ -302,9 +362,9 @@
             this.numBtn3.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.numBtn3.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.numBtn3.ForeColor = System.Drawing.Color.Black;
-            this.numBtn3.Location = new System.Drawing.Point(115, 155);
+            this.numBtn3.Location = new System.Drawing.Point(155, 155);
             this.numBtn3.Name = "numBtn3";
-            this.numBtn3.Size = new System.Drawing.Size(50, 32);
+            this.numBtn3.Size = new System.Drawing.Size(70, 32);
             this.numBtn3.TabIndex = 0;
             this.numBtn3.Text = "3";
             this.numBtn3.UseCustomBackColor = true;
@@ -319,9 +379,9 @@
             this.plusBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plusBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.plusBtn.ForeColor = System.Drawing.Color.Black;
-            this.plusBtn.Location = new System.Drawing.Point(171, 155);
+            this.plusBtn.Location = new System.Drawing.Point(231, 155);
             this.plusBtn.Name = "plusBtn";
-            this.plusBtn.Size = new System.Drawing.Size(53, 32);
+            this.plusBtn.Size = new System.Drawing.Size(71, 32);
             this.plusBtn.Style = MetroFramework.MetroColorStyle.Blue;
             this.plusBtn.TabIndex = 0;
             this.plusBtn.Text = "+";
@@ -336,9 +396,9 @@
             this.minusBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.minusBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.minusBtn.ForeColor = System.Drawing.Color.Black;
-            this.minusBtn.Location = new System.Drawing.Point(171, 117);
+            this.minusBtn.Location = new System.Drawing.Point(231, 117);
             this.minusBtn.Name = "minusBtn";
-            this.minusBtn.Size = new System.Drawing.Size(53, 32);
+            this.minusBtn.Size = new System.Drawing.Size(71, 32);
             this.minusBtn.Style = MetroFramework.MetroColorStyle.Blue;
             this.minusBtn.TabIndex = 0;
             this.minusBtn.Text = "-";
@@ -354,9 +414,9 @@
             this.numBtn6.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.numBtn6.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.numBtn6.ForeColor = System.Drawing.Color.Black;
-            this.numBtn6.Location = new System.Drawing.Point(115, 117);
+            this.numBtn6.Location = new System.Drawing.Point(155, 117);
             this.numBtn6.Name = "numBtn6";
-            this.numBtn6.Size = new System.Drawing.Size(50, 32);
+            this.numBtn6.Size = new System.Drawing.Size(70, 32);
             this.numBtn6.TabIndex = 0;
             this.numBtn6.Text = "6";
             this.numBtn6.UseCustomBackColor = true;
@@ -372,9 +432,9 @@
             this.numBtn5.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.numBtn5.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.numBtn5.ForeColor = System.Drawing.Color.Black;
-            this.numBtn5.Location = new System.Drawing.Point(59, 117);
+            this.numBtn5.Location = new System.Drawing.Point(79, 117);
             this.numBtn5.Name = "numBtn5";
-            this.numBtn5.Size = new System.Drawing.Size(50, 32);
+            this.numBtn5.Size = new System.Drawing.Size(70, 32);
             this.numBtn5.TabIndex = 0;
             this.numBtn5.Text = "5";
             this.numBtn5.UseCustomBackColor = true;
@@ -392,7 +452,7 @@
             this.numBtn4.ForeColor = System.Drawing.Color.Black;
             this.numBtn4.Location = new System.Drawing.Point(3, 117);
             this.numBtn4.Name = "numBtn4";
-            this.numBtn4.Size = new System.Drawing.Size(50, 32);
+            this.numBtn4.Size = new System.Drawing.Size(70, 32);
             this.numBtn4.TabIndex = 0;
             this.numBtn4.Text = "4";
             this.numBtn4.UseCustomBackColor = true;
@@ -410,7 +470,7 @@
             this.numBtn7.ForeColor = System.Drawing.Color.Black;
             this.numBtn7.Location = new System.Drawing.Point(3, 79);
             this.numBtn7.Name = "numBtn7";
-            this.numBtn7.Size = new System.Drawing.Size(50, 32);
+            this.numBtn7.Size = new System.Drawing.Size(70, 32);
             this.numBtn7.TabIndex = 0;
             this.numBtn7.Text = "7";
             this.numBtn7.UseCustomBackColor = true;
@@ -426,9 +486,9 @@
             this.numBtn8.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.numBtn8.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.numBtn8.ForeColor = System.Drawing.Color.Black;
-            this.numBtn8.Location = new System.Drawing.Point(59, 79);
+            this.numBtn8.Location = new System.Drawing.Point(79, 79);
             this.numBtn8.Name = "numBtn8";
-            this.numBtn8.Size = new System.Drawing.Size(50, 32);
+            this.numBtn8.Size = new System.Drawing.Size(70, 32);
             this.numBtn8.TabIndex = 0;
             this.numBtn8.Text = "8";
             this.numBtn8.UseCustomBackColor = true;
@@ -444,9 +504,9 @@
             this.numBtn9.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.numBtn9.FontWeight = MetroFramework.MetroButtonWeight.Regular;
             this.numBtn9.ForeColor = System.Drawing.Color.Black;
-            this.numBtn9.Location = new System.Drawing.Point(115, 79);
+            this.numBtn9.Location = new System.Drawing.Point(155, 79);
             this.numBtn9.Name = "numBtn9";
-            this.numBtn9.Size = new System.Drawing.Size(50, 32);
+            this.numBtn9.Size = new System.Drawing.Size(70, 32);
             this.numBtn9.TabIndex = 0;
             this.numBtn9.Text = "9";
             this.numBtn9.UseCustomBackColor = true;
@@ -461,9 +521,9 @@
             this.mulBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mulBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.mulBtn.ForeColor = System.Drawing.Color.Black;
-            this.mulBtn.Location = new System.Drawing.Point(171, 79);
+            this.mulBtn.Location = new System.Drawing.Point(231, 79);
             this.mulBtn.Name = "mulBtn";
-            this.mulBtn.Size = new System.Drawing.Size(53, 32);
+            this.mulBtn.Size = new System.Drawing.Size(71, 32);
             this.mulBtn.Style = MetroFramework.MetroColorStyle.Blue;
             this.mulBtn.TabIndex = 0;
             this.mulBtn.Text = "*";
@@ -478,9 +538,9 @@
             this.divBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.divBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.divBtn.ForeColor = System.Drawing.Color.Black;
-            this.divBtn.Location = new System.Drawing.Point(171, 41);
+            this.divBtn.Location = new System.Drawing.Point(231, 41);
             this.divBtn.Name = "divBtn";
-            this.divBtn.Size = new System.Drawing.Size(53, 32);
+            this.divBtn.Size = new System.Drawing.Size(71, 32);
             this.divBtn.Style = MetroFramework.MetroColorStyle.Blue;
             this.divBtn.TabIndex = 0;
             this.divBtn.Text = "/";
@@ -495,9 +555,9 @@
             this.bracketBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bracketBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.bracketBtn.ForeColor = System.Drawing.Color.Black;
-            this.bracketBtn.Location = new System.Drawing.Point(59, 3);
+            this.bracketBtn.Location = new System.Drawing.Point(79, 3);
             this.bracketBtn.Name = "bracketBtn";
-            this.bracketBtn.Size = new System.Drawing.Size(50, 32);
+            this.bracketBtn.Size = new System.Drawing.Size(70, 32);
             this.bracketBtn.Style = MetroFramework.MetroColorStyle.Blue;
             this.bracketBtn.TabIndex = 0;
             this.bracketBtn.Text = "( )";
@@ -512,9 +572,9 @@
             this.clearBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.clearBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.clearBtn.ForeColor = System.Drawing.Color.Black;
-            this.clearBtn.Location = new System.Drawing.Point(115, 3);
+            this.clearBtn.Location = new System.Drawing.Point(155, 3);
             this.clearBtn.Name = "clearBtn";
-            this.clearBtn.Size = new System.Drawing.Size(50, 32);
+            this.clearBtn.Size = new System.Drawing.Size(70, 32);
             this.clearBtn.Style = MetroFramework.MetroColorStyle.Orange;
             this.clearBtn.TabIndex = 0;
             this.clearBtn.Text = "C";
@@ -531,7 +591,7 @@
             this.percentBtn.ForeColor = System.Drawing.Color.Black;
             this.percentBtn.Location = new System.Drawing.Point(3, 3);
             this.percentBtn.Name = "percentBtn";
-            this.percentBtn.Size = new System.Drawing.Size(50, 32);
+            this.percentBtn.Size = new System.Drawing.Size(70, 32);
             this.percentBtn.Style = MetroFramework.MetroColorStyle.Blue;
             this.percentBtn.TabIndex = 0;
             this.percentBtn.Text = "%";
@@ -546,9 +606,9 @@
             this.rootBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rootBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.rootBtn.ForeColor = System.Drawing.Color.Black;
-            this.rootBtn.Location = new System.Drawing.Point(115, 41);
+            this.rootBtn.Location = new System.Drawing.Point(155, 41);
             this.rootBtn.Name = "rootBtn";
-            this.rootBtn.Size = new System.Drawing.Size(50, 32);
+            this.rootBtn.Size = new System.Drawing.Size(70, 32);
             this.rootBtn.Style = MetroFramework.MetroColorStyle.Blue;
             this.rootBtn.TabIndex = 0;
             this.rootBtn.Text = "√";
@@ -565,7 +625,7 @@
             this.inverseBtn.ForeColor = System.Drawing.Color.Black;
             this.inverseBtn.Location = new System.Drawing.Point(3, 41);
             this.inverseBtn.Name = "inverseBtn";
-            this.inverseBtn.Size = new System.Drawing.Size(50, 32);
+            this.inverseBtn.Size = new System.Drawing.Size(70, 32);
             this.inverseBtn.Style = MetroFramework.MetroColorStyle.Blue;
             this.inverseBtn.TabIndex = 0;
             this.inverseBtn.Text = "1/x";
@@ -580,53 +640,15 @@
             this.squaredBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.squaredBtn.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.squaredBtn.ForeColor = System.Drawing.Color.Black;
-            this.squaredBtn.Location = new System.Drawing.Point(59, 41);
+            this.squaredBtn.Location = new System.Drawing.Point(79, 41);
             this.squaredBtn.Name = "squaredBtn";
-            this.squaredBtn.Size = new System.Drawing.Size(50, 32);
+            this.squaredBtn.Size = new System.Drawing.Size(70, 32);
             this.squaredBtn.Style = MetroFramework.MetroColorStyle.Blue;
             this.squaredBtn.TabIndex = 0;
             this.squaredBtn.Text = "^";
             this.squaredBtn.UseSelectable = true;
             this.squaredBtn.UseStyleColors = true;
             this.squaredBtn.Click += new System.EventHandler(this.OpBtnClickEvent);
-            // 
-            // recentScreen
-            // 
-            this.recentScreen.ActiveControl = null;
-            this.recentScreen.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.recentScreen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.recentScreen.Enabled = false;
-            this.recentScreen.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.recentScreen.Location = new System.Drawing.Point(3, 100);
-            this.recentScreen.Name = "recentScreen";
-            this.recentScreen.PaintTileCount = false;
-            this.recentScreen.Size = new System.Drawing.Size(227, 52);
-            this.recentScreen.TabIndex = 2;
-            this.recentScreen.Text = "recentScreen";
-            this.recentScreen.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.recentScreen.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.recentScreen.UseCustomBackColor = true;
-            this.recentScreen.UseCustomForeColor = true;
-            this.recentScreen.UseSelectable = true;
-            // 
-            // resultScreen
-            // 
-            this.resultScreen.ActiveControl = null;
-            this.resultScreen.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.resultScreen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.resultScreen.Enabled = false;
-            this.resultScreen.Location = new System.Drawing.Point(3, 22);
-            this.resultScreen.Name = "resultScreen";
-            this.resultScreen.PaintTileCount = false;
-            this.resultScreen.Size = new System.Drawing.Size(227, 72);
-            this.resultScreen.TabIndex = 3;
-            this.resultScreen.Text = "resultScreen";
-            this.resultScreen.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.resultScreen.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.resultScreen.UseCustomBackColor = true;
-            this.resultScreen.UseCustomForeColor = true;
-            this.resultScreen.UseSelectable = true;
-            this.resultScreen.TextChanged += new System.EventHandler(this.ResultScreen_TextChanged);
             // 
             // splitContainer1
             // 
@@ -642,8 +664,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.metroTabControl1);
             this.splitContainer1.Panel2MinSize = 0;
-            this.splitContainer1.Size = new System.Drawing.Size(473, 391);
-            this.splitContainer1.SplitterDistance = 233;
+            this.splitContainer1.Size = new System.Drawing.Size(632, 391);
+            this.splitContainer1.SplitterDistance = 311;
             this.splitContainer1.TabIndex = 1;
             // 
             // metroTabControl1
@@ -655,7 +677,7 @@
             this.metroTabControl1.Location = new System.Drawing.Point(0, 0);
             this.metroTabControl1.Name = "metroTabControl1";
             this.metroTabControl1.SelectedIndex = 0;
-            this.metroTabControl1.Size = new System.Drawing.Size(236, 391);
+            this.metroTabControl1.Size = new System.Drawing.Size(317, 391);
             this.metroTabControl1.TabIndex = 0;
             this.metroTabControl1.UseSelectable = true;
             // 
@@ -669,7 +691,7 @@
             this.metroTabPage1.HorizontalScrollbarSize = 0;
             this.metroTabPage1.Location = new System.Drawing.Point(4, 44);
             this.metroTabPage1.Name = "metroTabPage1";
-            this.metroTabPage1.Size = new System.Drawing.Size(228, 343);
+            this.metroTabPage1.Size = new System.Drawing.Size(309, 343);
             this.metroTabPage1.TabIndex = 0;
             this.metroTabPage1.Text = "기록";
             this.metroTabPage1.UseCustomForeColor = true;
@@ -692,7 +714,7 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(228, 343);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(309, 343);
             this.tableLayoutPanel4.TabIndex = 3;
             // 
             // logList
@@ -706,7 +728,7 @@
             this.logList.Location = new System.Drawing.Point(3, 23);
             this.logList.Name = "logList";
             this.logList.OwnerDraw = true;
-            this.logList.Size = new System.Drawing.Size(222, 317);
+            this.logList.Size = new System.Drawing.Size(303, 317);
             this.logList.TabIndex = 2;
             this.logList.UseCompatibleStateImageBehavior = false;
             this.logList.UseSelectable = true;
@@ -720,7 +742,7 @@
             // listClearBtn
             // 
             this.listClearBtn.Dock = System.Windows.Forms.DockStyle.Right;
-            this.listClearBtn.Location = new System.Drawing.Point(150, 3);
+            this.listClearBtn.Location = new System.Drawing.Point(231, 3);
             this.listClearBtn.Name = "listClearBtn";
             this.listClearBtn.Size = new System.Drawing.Size(75, 14);
             this.listClearBtn.TabIndex = 3;
@@ -728,11 +750,32 @@
             this.listClearBtn.UseSelectable = true;
             this.listClearBtn.Click += new System.EventHandler(this.ListClearBtn_Click);
             // 
+            // userToggleButton1
+            // 
+            this.userToggleButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.userToggleButton1.Checked = true;
+            this.userToggleButton1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.userToggleButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.userToggleButton1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.userToggleButton1.Location = new System.Drawing.Point(277, 2);
+            this.userToggleButton1.Margin = new System.Windows.Forms.Padding(2);
+            this.userToggleButton1.MaximumSize = new System.Drawing.Size(40, 20);
+            this.userToggleButton1.MinimumSize = new System.Drawing.Size(32, 16);
+            this.userToggleButton1.Name = "userToggleButton1";
+            this.userToggleButton1.OffBackColor = System.Drawing.Color.Gray;
+            this.userToggleButton1.OffToggleColor = System.Drawing.Color.Gainsboro;
+            this.userToggleButton1.OnBackColor = System.Drawing.Color.DarkTurquoise;
+            this.userToggleButton1.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            this.userToggleButton1.Size = new System.Drawing.Size(32, 16);
+            this.userToggleButton1.TabIndex = 2;
+            this.userToggleButton1.UseVisualStyleBackColor = true;
+            this.userToggleButton1.CheckedChanged += new System.EventHandler(this.UserToggleButton1_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 11F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(493, 460);
+            this.ClientSize = new System.Drawing.Size(652, 460);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -781,8 +824,6 @@
         private MetroFramework.Controls.MetroButton plusMinusBtn;
         private MetroFramework.Controls.MetroButton dotBtn;
         private MetroFramework.Controls.MetroButton delBtn;
-        private MetroFramework.Controls.MetroTile recentScreen;
-        private MetroFramework.Controls.MetroTile resultScreen;
         private UserControls.UserToggleButton userToggleButton1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private MetroFramework.Controls.MetroTabControl metroTabControl1;
@@ -794,6 +835,8 @@
         private MetroFramework.Controls.MetroButton listClearBtn;
         private MetroFramework.Controls.MetroButton squaredBtn;
         private System.Windows.Forms.ColumnHeader columnHeader1;
+        private MetroFramework.Controls.MetroTextBox resultScreen;
+        private MetroFramework.Controls.MetroTextBox recentScreen;
     }
 }
 
