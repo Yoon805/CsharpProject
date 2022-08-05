@@ -110,16 +110,25 @@ namespace CalculatorApp
                             }
                             j++;
                         }
-                        List<String> postModification = CalStackUse(rootString);
-                        i = j; // 미리 계산한 갯수만큼 들어갈 수  변경
-                        string result = CalPostModification(postModification);
-                        result = Math.Sqrt(Double.Parse(result)).ToString();
-                        for (int k = i; k < temp.Length; k++)
+                        try
                         {
-                            result += temp[k];
+                            List<String> postModification = CalStackUse(rootString);
+                            i = j; // 미리 계산한 갯수만큼 들어갈 수  변경
+                            string result = CalPostModification(postModification);
+                            result = Math.Sqrt(Double.Parse(result)).ToString();
+                            for (int k = i; k < temp.Length; k++)
+                            {
+                                result += temp[k];
+                            }
+                            temp = result; // 구한 값을 맨 앞으로 넣어서 다시 for문 반복
+                            i = -1; // 바로 다음 시도에서 i++이 실행되므로 -1부터 시작
                         }
-                        temp = result; // 구한 값을 맨 앞으로 넣어서 다시 for문 반복
-                        i = -1; // 바로 다음 시도에서 i++이 실행되므로 -1부터 시작
+                        catch (Exception exp)
+                        {
+                            Console.WriteLine("=====ErrorOccured_CSU=====");
+                            Console.WriteLine(exp);
+                            throw;
+                        }
                         break;
                     case 'E':
                         // 지수표기법에 의해 E가 포함된 경우 처리
@@ -291,7 +300,7 @@ namespace CalculatorApp
                         break;
                 }
             }
-            if (!oneMoreCalc)
+            if (!oneMoreCalc || !findExp)
             {
                 lastCal = "";
             }

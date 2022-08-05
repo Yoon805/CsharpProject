@@ -1,11 +1,18 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Windows.Forms;
+using System.ComponentModel;
+
 
 namespace CalculatorApp.UserControls
 {
-    internal class UserToggleButton: CheckBox
+    internal class UserToggleButton : CheckBox
     {
         //Fields
         private Color onBackColor = Color.MediumSlateBlue;
@@ -22,17 +29,17 @@ namespace CalculatorApp.UserControls
 
 
         //Constructor
-        public UserToggleButton() 
+        public UserToggleButton()
         {
             this.MinimumSize = new Size(10, 10);
         }
 
         //Methods
-        private GraphicsPath GetFigurePath() 
+        private GraphicsPath GetFigurePath()
         {
             int arcSize = this.Height - 1;
             Rectangle leftArc = new Rectangle(0, 0, arcSize, arcSize);
-            Rectangle rightArc = new Rectangle(this.Width - arcSize -2 , 0, arcSize, arcSize);
+            Rectangle rightArc = new Rectangle(this.Width - arcSize - 2, 0, arcSize, arcSize);
 
             GraphicsPath path = new GraphicsPath();
             path.StartFigure();
@@ -54,7 +61,7 @@ namespace CalculatorApp.UserControls
 
             if (this.Checked) // ON
             {   //Draw the conntrol surface
-                pevent.Graphics.FillPath(new SolidBrush(OnBackColor),GetFigurePath());
+                pevent.Graphics.FillPath(new SolidBrush(OnBackColor), GetFigurePath());
                 //Draw the toggle
                 pevent.Graphics.FillEllipse(new SolidBrush(OnToggleColor),
                     new Rectangle(this.Width - this.Height + 1, 2, toggleSize, toggleSize));

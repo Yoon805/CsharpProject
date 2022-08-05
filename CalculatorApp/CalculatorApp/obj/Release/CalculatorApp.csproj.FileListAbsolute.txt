@@ -1,4 +1,6 @@
 C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\bin\Release\CalculatorApp.exe.config
+C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\bin\Release\CalculatorApp.exe.manifest
+C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\bin\Release\CalculatorApp.application
 C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\bin\Release\CalculatorApp.exe
 C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\bin\Release\CalculatorApp.pdb
 C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\bin\Release\MetroFramework.Design.dll
@@ -10,10 +12,8 @@ C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\obj\Rel
 C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\obj\Release\CalculatorApp.Properties.Resources.resources
 C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\obj\Release\CalculatorApp.csproj.GenerateResource.cache
 C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\obj\Release\CalculatorApp.csproj.CoreCompileInputs.cache
+C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\obj\Release\CalculatorApp.exe.manifest
+C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\obj\Release\CalculatorApp.application
 C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\obj\Release\CalculatorApp.csproj.CopyComplete
 C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\obj\Release\CalculatorApp.exe
 C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\obj\Release\CalculatorApp.pdb
-C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\bin\Release\CalculatorApp.exe.manifest
-C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\bin\Release\CalculatorApp.application
-C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\obj\Release\CalculatorApp.exe.manifest
-C:\Users\dyyoon\Desktop\Csharp\CsharpProject\CalculatorApp\CalculatorApp\obj\Release\CalculatorApp.application
