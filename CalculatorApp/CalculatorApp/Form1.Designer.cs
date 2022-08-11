@@ -33,7 +33,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.recentScreen = new MetroFramework.Controls.MetroTextBox();
             this.resultScreen = new MetroFramework.Controls.MetroTextBox();
-            this.userToggleButton1 = new CalculatorApp.UserControls.UserToggleButton();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.delBtn = new MetroFramework.Controls.MetroButton();
             this.equalBtn = new MetroFramework.Controls.MetroButton();
@@ -66,6 +65,7 @@
             this.logList = new MetroFramework.Controls.MetroListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listClearBtn = new MetroFramework.Controls.MetroButton();
+            this.userToggleButton1 = new CalculatorApp.UserControls.UserToggleButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -114,6 +114,7 @@
             this.recentScreen.CustomButton.UseSelectable = true;
             this.recentScreen.CustomButton.Visible = false;
             this.recentScreen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.recentScreen.Enabled = false;
             this.recentScreen.FontSize = MetroFramework.MetroTextBoxSize.Tall;
             this.recentScreen.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.recentScreen.Lines = new string[] {
@@ -137,6 +138,7 @@
             this.recentScreen.UseSelectable = true;
             this.recentScreen.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.recentScreen.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.recentScreen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
             // 
             // resultScreen
             // 
@@ -179,27 +181,7 @@
             this.resultScreen.WaterMarkColor = System.Drawing.SystemColors.ControlText;
             this.resultScreen.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.resultScreen.TextChanged += new System.EventHandler(this.ResultScreen_TextChanged);
-            // 
-            // userToggleButton1
-            // 
-            this.userToggleButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.userToggleButton1.Checked = true;
-            this.userToggleButton1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.userToggleButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.userToggleButton1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.userToggleButton1.Location = new System.Drawing.Point(277, 2);
-            this.userToggleButton1.Margin = new System.Windows.Forms.Padding(2);
-            this.userToggleButton1.MaximumSize = new System.Drawing.Size(40, 20);
-            this.userToggleButton1.MinimumSize = new System.Drawing.Size(32, 16);
-            this.userToggleButton1.Name = "userToggleButton1";
-            this.userToggleButton1.OffBackColor = System.Drawing.Color.Gray;
-            this.userToggleButton1.OffToggleColor = System.Drawing.Color.Gainsboro;
-            this.userToggleButton1.OnBackColor = System.Drawing.Color.DarkTurquoise;
-            this.userToggleButton1.OnToggleColor = System.Drawing.Color.WhiteSmoke;
-            this.userToggleButton1.Size = new System.Drawing.Size(32, 16);
-            this.userToggleButton1.TabIndex = 2;
-            this.userToggleButton1.UseVisualStyleBackColor = true;
-            this.userToggleButton1.CheckedChanged += new System.EventHandler(this.UserToggleButton1_CheckedChanged);
+            this.resultScreen.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
             // 
             // tableLayoutPanel2
             // 
@@ -265,6 +247,8 @@
             this.delBtn.UseSelectable = true;
             this.delBtn.UseStyleColors = true;
             this.delBtn.Click += new System.EventHandler(this.DelBtn_Click);
+            this.delBtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.delBtn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // equalBtn
             // 
@@ -283,6 +267,8 @@
             this.equalBtn.UseSelectable = true;
             this.equalBtn.UseStyleColors = true;
             this.equalBtn.Click += new System.EventHandler(this.EqualBtn_Click);
+            this.equalBtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.equalBtn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             this.equalBtn.Leave += new System.EventHandler(this.EqualBtn_Leave);
             // 
             // dotBtn
@@ -302,6 +288,8 @@
             this.dotBtn.UseCustomForeColor = true;
             this.dotBtn.UseSelectable = true;
             this.dotBtn.Click += new System.EventHandler(this.NumBtnClickEvent);
+            this.dotBtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.dotBtn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // numBtn0
             // 
@@ -320,6 +308,8 @@
             this.numBtn0.UseCustomForeColor = true;
             this.numBtn0.UseSelectable = true;
             this.numBtn0.Click += new System.EventHandler(this.NumBtnClickEvent);
+            this.numBtn0.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.numBtn0.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // plusMinusBtn
             // 
@@ -338,6 +328,8 @@
             this.plusMinusBtn.UseCustomForeColor = true;
             this.plusMinusBtn.UseSelectable = true;
             this.plusMinusBtn.Click += new System.EventHandler(this.OpBtnClickEvent);
+            this.plusMinusBtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.plusMinusBtn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // numBtn1
             // 
@@ -356,6 +348,8 @@
             this.numBtn1.UseCustomForeColor = true;
             this.numBtn1.UseSelectable = true;
             this.numBtn1.Click += new System.EventHandler(this.NumBtnClickEvent);
+            this.numBtn1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.numBtn1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // numBtn2
             // 
@@ -374,6 +368,8 @@
             this.numBtn2.UseCustomForeColor = true;
             this.numBtn2.UseSelectable = true;
             this.numBtn2.Click += new System.EventHandler(this.NumBtnClickEvent);
+            this.numBtn2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.numBtn2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // numBtn3
             // 
@@ -392,6 +388,8 @@
             this.numBtn3.UseCustomForeColor = true;
             this.numBtn3.UseSelectable = true;
             this.numBtn3.Click += new System.EventHandler(this.NumBtnClickEvent);
+            this.numBtn3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.numBtn3.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // plusBtn
             // 
@@ -409,6 +407,8 @@
             this.plusBtn.UseSelectable = true;
             this.plusBtn.UseStyleColors = true;
             this.plusBtn.Click += new System.EventHandler(this.OpBtnClickEvent);
+            this.plusBtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.plusBtn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // minusBtn
             // 
@@ -426,6 +426,8 @@
             this.minusBtn.UseSelectable = true;
             this.minusBtn.UseStyleColors = true;
             this.minusBtn.Click += new System.EventHandler(this.OpBtnClickEvent);
+            this.minusBtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.minusBtn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // numBtn6
             // 
@@ -444,6 +446,8 @@
             this.numBtn6.UseCustomForeColor = true;
             this.numBtn6.UseSelectable = true;
             this.numBtn6.Click += new System.EventHandler(this.NumBtnClickEvent);
+            this.numBtn6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.numBtn6.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // numBtn5
             // 
@@ -462,6 +466,8 @@
             this.numBtn5.UseCustomForeColor = true;
             this.numBtn5.UseSelectable = true;
             this.numBtn5.Click += new System.EventHandler(this.NumBtnClickEvent);
+            this.numBtn5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.numBtn5.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // numBtn4
             // 
@@ -480,6 +486,8 @@
             this.numBtn4.UseCustomForeColor = true;
             this.numBtn4.UseSelectable = true;
             this.numBtn4.Click += new System.EventHandler(this.NumBtnClickEvent);
+            this.numBtn4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.numBtn4.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // numBtn7
             // 
@@ -498,6 +506,8 @@
             this.numBtn7.UseCustomForeColor = true;
             this.numBtn7.UseSelectable = true;
             this.numBtn7.Click += new System.EventHandler(this.NumBtnClickEvent);
+            this.numBtn7.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.numBtn7.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // numBtn8
             // 
@@ -516,6 +526,8 @@
             this.numBtn8.UseCustomForeColor = true;
             this.numBtn8.UseSelectable = true;
             this.numBtn8.Click += new System.EventHandler(this.NumBtnClickEvent);
+            this.numBtn8.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.numBtn8.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // numBtn9
             // 
@@ -534,6 +546,8 @@
             this.numBtn9.UseCustomForeColor = true;
             this.numBtn9.UseSelectable = true;
             this.numBtn9.Click += new System.EventHandler(this.NumBtnClickEvent);
+            this.numBtn9.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.numBtn9.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // mulBtn
             // 
@@ -551,6 +565,8 @@
             this.mulBtn.UseSelectable = true;
             this.mulBtn.UseStyleColors = true;
             this.mulBtn.Click += new System.EventHandler(this.OpBtnClickEvent);
+            this.mulBtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.mulBtn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // divBtn
             // 
@@ -568,6 +584,8 @@
             this.divBtn.UseSelectable = true;
             this.divBtn.UseStyleColors = true;
             this.divBtn.Click += new System.EventHandler(this.OpBtnClickEvent);
+            this.divBtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.divBtn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // bracketBtn
             // 
@@ -585,6 +603,8 @@
             this.bracketBtn.UseSelectable = true;
             this.bracketBtn.UseStyleColors = true;
             this.bracketBtn.Click += new System.EventHandler(this.OpBtnClickEvent);
+            this.bracketBtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.bracketBtn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // clearBtn
             // 
@@ -602,6 +622,8 @@
             this.clearBtn.UseSelectable = true;
             this.clearBtn.UseStyleColors = true;
             this.clearBtn.Click += new System.EventHandler(this.ClearBtn_Click);
+            this.clearBtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.clearBtn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // percentBtn
             // 
@@ -619,6 +641,8 @@
             this.percentBtn.UseSelectable = true;
             this.percentBtn.UseStyleColors = true;
             this.percentBtn.Click += new System.EventHandler(this.OpBtnClickEvent);
+            this.percentBtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.percentBtn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // rootBtn
             // 
@@ -636,6 +660,8 @@
             this.rootBtn.UseSelectable = true;
             this.rootBtn.UseStyleColors = true;
             this.rootBtn.Click += new System.EventHandler(this.OpBtnClickEvent);
+            this.rootBtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.rootBtn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // inverseBtn
             // 
@@ -653,6 +679,8 @@
             this.inverseBtn.UseSelectable = true;
             this.inverseBtn.UseStyleColors = true;
             this.inverseBtn.Click += new System.EventHandler(this.OpBtnClickEvent);
+            this.inverseBtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.inverseBtn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // squaredBtn
             // 
@@ -670,6 +698,8 @@
             this.squaredBtn.UseSelectable = true;
             this.squaredBtn.UseStyleColors = true;
             this.squaredBtn.Click += new System.EventHandler(this.OpBtnClickEvent);
+            this.squaredBtn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
+            this.squaredBtn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Btn_KeyUp);
             // 
             // splitContainer1
             // 
@@ -688,6 +718,7 @@
             this.splitContainer1.Size = new System.Drawing.Size(632, 391);
             this.splitContainer1.SplitterDistance = 311;
             this.splitContainer1.TabIndex = 1;
+            this.splitContainer1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
             // 
             // metroTabControl1
             // 
@@ -701,6 +732,7 @@
             this.metroTabControl1.Size = new System.Drawing.Size(317, 391);
             this.metroTabControl1.TabIndex = 0;
             this.metroTabControl1.UseSelectable = true;
+            this.metroTabControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
             // 
             // metroTabPage1
             // 
@@ -771,6 +803,27 @@
             this.listClearBtn.UseSelectable = true;
             this.listClearBtn.Click += new System.EventHandler(this.ListClearBtn_Click);
             // 
+            // userToggleButton1
+            // 
+            this.userToggleButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.userToggleButton1.Checked = true;
+            this.userToggleButton1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.userToggleButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.userToggleButton1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.userToggleButton1.Location = new System.Drawing.Point(277, 2);
+            this.userToggleButton1.Margin = new System.Windows.Forms.Padding(2);
+            this.userToggleButton1.MaximumSize = new System.Drawing.Size(40, 20);
+            this.userToggleButton1.MinimumSize = new System.Drawing.Size(32, 16);
+            this.userToggleButton1.Name = "userToggleButton1";
+            this.userToggleButton1.OffBackColor = System.Drawing.Color.Gray;
+            this.userToggleButton1.OffToggleColor = System.Drawing.Color.Gainsboro;
+            this.userToggleButton1.OnBackColor = System.Drawing.Color.DarkTurquoise;
+            this.userToggleButton1.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            this.userToggleButton1.Size = new System.Drawing.Size(32, 16);
+            this.userToggleButton1.TabIndex = 2;
+            this.userToggleButton1.UseVisualStyleBackColor = true;
+            this.userToggleButton1.CheckedChanged += new System.EventHandler(this.UserToggleButton1_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 11F);
@@ -783,6 +836,7 @@
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(10, 60, 10, 9);
             this.Text = "Calculator ";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Func_KeyDown);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);

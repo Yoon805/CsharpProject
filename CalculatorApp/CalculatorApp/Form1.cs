@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 
 namespace CalculatorApp
@@ -8,6 +10,8 @@ namespace CalculatorApp
 
     public partial class Form1 : MetroFramework.Forms.MetroForm
     {
+        public event EventHandler CallClick;
+
         //프로그램 시작
         public Form1()
         {
@@ -196,18 +200,20 @@ namespace CalculatorApp
             userFunc.OneMoreCalc = false;
         }
 
+        private void Func_KeyDown(object sender, KeyEventArgs e)
+        {
 
-        /* //키패드 입력시 처리
-         private void KeyInput(object sender, KeyEventArgs e)
-         {      //translate key value to char            
-             char keyNo = e.KeyValue.ToString()[(e.KeyValue.ToString().Length - 1)];
-             //Do Something if key event value is numeric            
-             if (char.IsNumber(keyNo))
-             {
-                 int keyVal = int.Parse(keyNo.ToString());
+            if (e.KeyCode == Keys.D1 || e.KeyCode == Keys.NumPad1)
+            {
+                numBtn1.Focus();
+                numBtn1.PerformClick();
+            }
+        }
 
-                 //do logic for numric            
-             }
-         }*/
+        private void Btn_KeyUp(object sender, KeyEventArgs e)
+        {
+            resultScreen.Focus();
+        }
+
     }
 }
